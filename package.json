@@ -1,0 +1,19 @@
+{
+  "name": "InternetProgramiranjeProjekatKlijent",
+  "version": "0.0.1",
+  "description": "Klijentski deo aplikacije radjene za ipit iz Internet Programiranja",
+  "author": "Dusan Reljic",
+  "main": "js/app.js",
+  "dependencies": {
+    "bootstrap": "^3.3.4",
+    "flux": "^2.0.1",
+    "react": "^0.13.1",
+    "react-bootstrap": "^0.19.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-util": "^3.0.4",
+    "reactify": "^1.1.0",
+    "watchify": "^2.6.2"
+  }
+}
