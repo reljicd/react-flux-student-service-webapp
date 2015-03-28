@@ -1,0 +1,22 @@
+.narrowInputText {
+    position: relative;
+    left: -20px;
+    height: 25px;
+    width: 60px;
+}
+
+.inputText {
+    position: relative;
+    left: -20px;
+    height: 25px;
+    width: 140px;
+}
+
+.textAllignedRight {
+    text-align: right;
+}
+
+.centerForm {
+    height: 640px;
+}
+
