@@ -1,37 +1,26 @@
-/**********************
-       CONSTANTS
-***********************/
-@outputs-and-buttons-height: 25px;
-@center-form-height: 640px;
-@default-input-text-width: 100px;
+@import "constants";
+@import "mixins";
 
-/**********************
-        MIXINS
-***********************/
-.relativeLeftPosition(@left:-20px) {
-  position: relative;
-  left: @left;
-}
+@import "maticniPodaciForm";
 
 /**********************
          STYLES
 ***********************/
 .narrowInputText {
-  .relativeLeftPosition;
-  height: @outputs-and-buttons-height;
-  width: @default-input-text-width * 0.6;
+  .inputText(0.6)
 }
 
-.inputText {
-  .relativeLeftPosition;
-  height: @outputs-and-buttons-height;
-  width: @default-input-text-width * 1.4;
+.wideInputText {
+  .inputText(1.6)
 }
 
 .textAllignedRight {
   text-align: right;
+  height: @outputs-and-buttons-height;
 }
 
-.centerForm {
-  height: @center-form-height;
+.textAllignedRightSpecial {
+  .textAllignedRight;
+  margin-bottom: 15px;
 }
+

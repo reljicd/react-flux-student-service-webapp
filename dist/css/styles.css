@@ -4,6 +4,25 @@
 /**********************
         MIXINS
 ***********************/
+#maticniPodaciLeftFormPanel {
+  height: 544px;
+}
+#maticniPodaciRightTextAreaPanel {
+  margin-right: 20px;
+}
+#maticniPodaciImage {
+  height: 196px;
+  width: 140px;
+}
+#maticniPodaciRightFormPanel {
+  height: 352px;
+}
+.centerForm {
+  height: 640px;
+}
+.polPanel {
+  height: 110px;
+}
 /**********************
          STYLES
 ***********************/
@@ -13,15 +32,18 @@
   height: 25px;
   width: 60px;
 }
-.inputText {
+.wideInputText {
   position: relative;
   left: -20px;
   height: 25px;
-  width: 140px;
+  width: 160px;
 }
 .textAllignedRight {
   text-align: right;
+  height: 25px;
 }
-.centerForm {
-  height: 640px;
+.textAllignedRightSpecial {
+  text-align: right;
+  height: 25px;
+  margin-bottom: 15px;
 }

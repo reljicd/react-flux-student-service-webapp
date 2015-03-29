@@ -1,0 +1,13 @@
+/**********************
+        MIXINS
+***********************/
+.relativeLeftPosition(@left:-20px) {
+  position: relative;
+  left: @left;
+}
+
+.inputText(@percent:1) {
+  .relativeLeftPosition;
+  height: @outputs-and-buttons-height;
+  width: @default-input-text-width * @percent;
+}
