@@ -9,6 +9,7 @@ var Row = require('react-bootstrap').Row;
 var Col = require('react-bootstrap').Col;
 var Input = require('react-bootstrap').Input;
 var Panel = require('react-bootstrap').Panel;
+var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
 var TopStudentForm = React.createClass({
 
@@ -18,10 +19,10 @@ var TopStudentForm = React.createClass({
                 <Panel>
                     <Row>
                         <Col md={3}>
-                            <Col md={6}>
+                            <Col md={5}>
                                 <p className='textAllignedRight'>Indeks</p>
                             </Col>
-                            <Col md={6}>
+                            <Col md={7}>
                                 <Input>
                                     <Row>
                                         <Col md={6}>
@@ -35,18 +36,13 @@ var TopStudentForm = React.createClass({
                             </Col>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Godina studija</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='God. studija' inputTextValue=''/>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
+                            <Col md={5}>
                                 <p className='textAllignedRight'>Status/Profil</p>
                             </Col>
-                            <Col md={6}>
+                            <Col md={7}>
                                 <Input>
                                     <Row>
                                         <Col md={6}>
@@ -60,82 +56,40 @@ var TopStudentForm = React.createClass({
                             </Col>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Tip Studija</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='Tip studija' inputTextValue=''/>
                         </Col>
                     </Row>
 
                     <Row>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Ime</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='Ime' inputTextValue=''/>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Datum upisa</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='Datum upisa' inputTextValue=''/>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>ESPB</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='ESPB' inputTextValue=''/>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Nacin upisa</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='Nacin upisa' inputTextValue=''/>
                         </Col>
                     </Row>
 
                     <Row>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Prezime</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='Prezime' inputTextValue=''/>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Status upisa</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='Status upisa' inputTextValue=''/>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
-                                <p className='textAllignedRight'>Skolska godina</p>
-                            </Col>
-                            <Col md={6}>
-                                <Input type='text' className='inputText form-control' disabled/>
-                            </Col>
+                            <LabelAndDisabledInputText label='Skolska god.' inputTextValue=''/>
                         </Col>
                         <Col md={3}>
-                            <Col md={6}>
+                            <Col md={5}>
                                 <p className='textAllignedRight'>
                                     <b>Neaktivan</b>
                                 </p>
-                            </Col>
-                            <Col md={6}>
                             </Col>
                         </Col>
                     </Row>
