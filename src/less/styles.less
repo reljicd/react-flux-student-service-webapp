@@ -1,0 +1,37 @@
+/**********************
+       CONSTANTS
+***********************/
+@outputs-and-buttons-height: 25px;
+@center-form-height: 640px;
+@default-input-text-width: 100px;
+
+/**********************
+        MIXINS
+***********************/
+.relativeLeftPosition(@left:-20px) {
+  position: relative;
+  left: @left;
+}
+
+/**********************
+         STYLES
+***********************/
+.narrowInputText {
+  .relativeLeftPosition;
+  height: @outputs-and-buttons-height;
+  width: @default-input-text-width * 0.6;
+}
+
+.inputText {
+  .relativeLeftPosition;
+  height: @outputs-and-buttons-height;
+  width: @default-input-text-width * 1.4;
+}
+
+.textAllignedRight {
+  text-align: right;
+}
+
+.centerForm {
+  height: @center-form-height;
+}
