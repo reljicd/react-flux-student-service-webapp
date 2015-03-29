@@ -7,7 +7,10 @@ var React = require('react');
 var TopNavbar = require('./components/TopNavbar.react.js');
 var TopStudentForm = require('./components/TopStudentForm.react.js');
 var CenterStackedNavTabs = require('./components/CenterStackedNavTabs.react.js');
+var ExampleData = require('./ExampleData');
 window.React = React; // export for http://fb.me/react-devtools
+
+ExampleData.init(); // load example data into localstorage
 
 React.render(
     <TopNavbar />,
