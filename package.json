@@ -8,7 +8,9 @@
     "bootstrap": "^3.3.4",
     "flux": "^2.0.1",
     "react": "^0.13.1",
-    "react-bootstrap": "^0.19.1"
+    "react-bootstrap": "^0.19.1",
+    "react-select": "^0.4.5",
+    "react-widgets": "^2.4.1"
   },
   "devDependencies": {
     "browserify": "^9.0.3",

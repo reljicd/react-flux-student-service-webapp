@@ -10,6 +10,7 @@ var ReactBootstrap = require('react-bootstrap'),
     Grid = ReactBootstrap.Grid,
     Col = ReactBootstrap.Col;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
+var LabelAndYearIndexComboBox = require('../components/LabelAndYearIndexComboBox.react.js');
 
 var TopStudentForm = React.createClass({
 
@@ -19,21 +20,7 @@ var TopStudentForm = React.createClass({
                 <Panel>
                     <Row>
                         <Col md={3}>
-                            <Col md={5}>
-                                <p className='textAllignedRight'>Indeks</p>
-                            </Col>
-                            <Col md={7}>
-                                <Input>
-                                    <Row>
-                                        <Col md={6}>
-                                            <input type='text' placeholder='Year' className='narrowInputText  form-control'/>
-                                        </Col>
-                                        <Col md={6}>
-                                            <input type='text' placeholder='No' className='narrowInputText  form-control'/>
-                                        </Col>
-                                    </Row>
-                                </Input>
-                            </Col>
+                            <LabelAndYearIndexComboBox/>
                         </Col>
                         <Col md={3}>
                             <LabelAndDisabledInputText label='God. studija' inputTextValue=''/>
