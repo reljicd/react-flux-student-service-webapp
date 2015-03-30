@@ -23,6 +23,12 @@
 .polPanel {
   height: 110px;
 }
+#upisiPanel {
+  height: 544px;
+}
+#rezultatiIspitaPanel {
+  height: 544px;
+}
 /**********************
          STYLES
 ***********************/
