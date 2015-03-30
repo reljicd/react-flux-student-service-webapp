@@ -4,7 +4,6 @@
 
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap'),
-    Panel = ReactBootstrap.Panel,
     Table = ReactBootstrap.Table;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
