@@ -40,6 +40,24 @@
 #polIspitaRightAlignedInputText {
   margin-left: 48px;
 }
+.labelAndDateTimePickerRow {
+  margin-bottom: 15px;
+}
+.labelAndDateTimePickerText {
+  text-align: right;
+  height: 25px;
+  margin-top: 5px;
+}
+#yearComboBoxCol {
+  padding-right: 0px;
+}
+#indexComboBoxCol {
+  padding-right: 10px;
+  padding-left: 2px;
+}
+.Select-control {
+  height: 25px;
+}
 /**********************
          STYLES
 ***********************/
@@ -54,6 +72,12 @@
   left: -20px;
   height: 25px;
   width: 60px;
+}
+.standardInputText {
+  position: relative;
+  left: -20px;
+  height: 25px;
+  width: 100px;
 }
 .wideInputText {
   position: relative;

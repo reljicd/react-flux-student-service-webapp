@@ -12,9 +12,11 @@ var ReactBootstrap = require('react-bootstrap'),
     ButtonToolbar = ReactBootstrap.ButtonToolbar,
     Glyphicon = ReactBootstrap.Glyphicon,
     ButtonGroup = ReactBootstrap.ButtonGroup,
+    ModalTrigger = ReactBootstrap.ModalTrigger,
     Panel = ReactBootstrap.Panel;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 var RezultatiIspitaTable = require('../components/RezultatiIspitaTable.react');
+var DodavanjePolozenogIspitaModal = require('../components/DodavanjePolozenogIspitaModal.react');
 
 var RezultatiIspita = React.createClass({
 
@@ -35,9 +37,11 @@ var RezultatiIspita = React.createClass({
                             <Button>
                                 <Glyphicon glyph='search' />
                             </Button>
-                            <Button>
-                                <b>Dodavanje polozenog ispita</b>
-                            </Button>
+                            <ModalTrigger modal={<DodavanjePolozenogIspitaModal />}>
+                                <Button>
+                                    <b>Dodavanje polozenog ispita</b>
+                                </Button>
+                            </ModalTrigger>
                         </ButtonGroup>
                     </ButtonToolbar>
                     <RezultatiIspitaTable/>
