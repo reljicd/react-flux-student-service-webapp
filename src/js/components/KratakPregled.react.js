@@ -49,8 +49,7 @@ var KratakPregled = React.createClass({
                     </Col>
                     <Col md={2}>
                         <Button bsStyle='primary' id='kratakPregledIzlazButton'>
-                            <Glyphicon glyph='remove' />
-                            Izlaz</Button>
+                            <Glyphicon glyph='remove' /> Izlaz</Button>
                     </Col>
                 </ Row >
             </span>

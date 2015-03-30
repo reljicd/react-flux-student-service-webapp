@@ -66,6 +66,7 @@ var GodinaIspitiTable = React.createClass({
                     </tbody>
                 </Table>
                 <span className='bottom'>
+                    <hr />
                     <Col md={6}>
                         <p className='textAllignedLeftSpecial'>Ukupno</p>
                         <p className='textAllignedLeftSpecial'>Pol. ispita</p>
