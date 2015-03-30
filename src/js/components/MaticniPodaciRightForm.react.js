@@ -3,8 +3,8 @@
  */
 
 var React = require('react');
-var Panel = require('react-bootstrap').Panel;
-var Nav = require('react-bootstrap').Nav;
+var ReactBootstrap = require('react-bootstrap'),
+    Panel = ReactBootstrap.Panel;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
 var MaticniPodaciRightForm = React.createClass({

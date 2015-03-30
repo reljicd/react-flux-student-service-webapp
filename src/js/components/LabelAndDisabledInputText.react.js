@@ -3,9 +3,10 @@
  */
 
 var React = require('react');
-var Col = require('react-bootstrap').Col;
-var Input = require('react-bootstrap').Input;
-var Row = require('react-bootstrap').Row;
+var ReactBootstrap = require('react-bootstrap'),
+    Row = ReactBootstrap.Row,
+    Input = ReactBootstrap.Input,
+    Col = ReactBootstrap.Col;
 
 var LabelAndDisabledInputText = React.createClass({
 

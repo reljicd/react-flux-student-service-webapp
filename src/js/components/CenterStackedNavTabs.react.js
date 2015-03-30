@@ -3,18 +3,19 @@
  */
 
 var React = require('react');
+var ReactBootstrap = require('react-bootstrap'),
+    Panel = ReactBootstrap.Panel,
+    Nav = ReactBootstrap.Nav,
+    NavItem = ReactBootstrap.NavItem,
+    Grid = ReactBootstrap.Grid,
+    Col = ReactBootstrap.Col;
 var CenterFormSelector = require('../components/CenterFormSelector.react');
-var Nav = require('react-bootstrap').Nav;
-var NavItem = require('react-bootstrap').NavItem;
-var Grid = require('react-bootstrap').Grid;
-var Col = require('react-bootstrap').Col;
-var Panel = require('react-bootstrap').Panel;
 
 var CenterStackedNavTabs = React.createClass({
 
     getInitialState: function () {
         return {
-            chosenNavItem: 1
+            chosenNavItem: 9
         };
     },
 

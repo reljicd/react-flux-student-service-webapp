@@ -3,10 +3,11 @@
  */
 
 var React = require('react');
-var Row = require('react-bootstrap').Row;
-var Col = require('react-bootstrap').Col;
-var Input = require('react-bootstrap').Input;
-var Panel = require('react-bootstrap').Panel;
+var ReactBootstrap = require('react-bootstrap'),
+    Panel = ReactBootstrap.Panel,
+    Row = ReactBootstrap.Row,
+    Input = ReactBootstrap.Input,
+    Col = ReactBootstrap.Col;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
 var MaticniPodaciLeftForm = React.createClass({

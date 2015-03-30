@@ -3,12 +3,15 @@
  */
 
 var React = require('react');
-var Row = require('react-bootstrap').Row;
-var Col = require('react-bootstrap').Col;
-var Input = require('react-bootstrap').Input;
-var Button = require('react-bootstrap').Button;
-var ButtonToolbar = require('react-bootstrap').ButtonToolbar;
-var Panel = require('react-bootstrap').Panel;
+var ReactBootstrap = require('react-bootstrap'),
+    Panel = ReactBootstrap.Panel,
+    Input = ReactBootstrap.Input,
+    Button = ReactBootstrap.Button,
+    ButtonToolbar = ReactBootstrap.ButtonToolbar,
+    Row = ReactBootstrap.Row,
+    Grid = ReactBootstrap.Grid,
+    Glyphicon = ReactBootstrap.Glyphicon,
+    Col = ReactBootstrap.Col;
 var MaticniPodaciLeftForm = require('../components/MaticniPodaciLeftForm.react');
 var MaticniPodaciRightForm = require('../components/MaticniPodaciRightForm.react');
 
@@ -43,8 +46,8 @@ var MaticniPodaciForm = React.createClass({
                 < Row >
                     <Col md={3} xsOffset={9}>
                         <ButtonToolbar>
-                            <Button bsStyle='primary'>Azuriraj</Button>
-                            <Button bsStyle='primary'>Izlaz</Button>
+                            <Button bsStyle='primary'><Glyphicon glyph='ok' /> Azuriraj</Button>
+                            <Button bsStyle='primary'><Glyphicon glyph='remove' /> Izlaz</Button>
                         </ButtonToolbar>
                     </Col>
                 </ Row >

@@ -3,9 +3,11 @@
  */
 
 var React = require('react');
-var Navbar = require('react-bootstrap').Navbar;
-var Nav = require('react-bootstrap').Nav;
-var NavItem = require('react-bootstrap').NavItem;
+var ReactBootstrap = require('react-bootstrap'),
+    Nav = ReactBootstrap.Nav,
+    NavItem = ReactBootstrap.NavItem,
+    Glyphicon = ReactBootstrap.Glyphicon,
+    Navbar = ReactBootstrap.Navbar;
 
 var TopNavbar = React.createClass({
 
@@ -25,7 +27,7 @@ var TopNavbar = React.createClass({
 
                 <Nav right>
                     <NavItem eventKey={1} href='#'><b>[Dusan]</b></NavItem>
-                    <NavItem eventKey={2} href='#'>Kraj Rada</NavItem>
+                    <NavItem eventKey={2} href='#'><Glyphicon glyph='off' /> Kraj Rada</NavItem>
                 </Nav>
             </Navbar>
 
