@@ -11,16 +11,18 @@ var ReactBootstrap = require('react-bootstrap'),
 var LabelAndDisabledInputText = React.createClass({
 
     render: function () {
-        var label = this.props.label;
+        var labelText = this.props.label;
         var inputTextValue = this.props.inputTextValue;
+        var enabled = this.props.enabled ? true : false;
+        var narrowOrWideClassName = this.props.narrow ? 'narrowInputText' : 'wideInputText';
 
         return (
             <Row>
                 <Col md={5}>
-                    <p className='textAllignedRight'>{label}</p>
+                    <p className='textAllignedRight'>{labelText}</p>
                 </Col>
                 <Col md={7}>
-                    <Input type='text' value={inputTextValue} className='wideInputText' disabled/>
+                    <Input type='text' value={inputTextValue} className={narrowOrWideClassName} disabled={!enabled}/>
                 </Col>
             </Row>
         );
