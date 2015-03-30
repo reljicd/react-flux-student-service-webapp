@@ -1,13 +1,17 @@
 @import "constants";
 @import "mixins";
-
 @import "maticniPodaciForm";
 @import "upisi";
 @import "rezultatiIspita";
+@import "kratakPregled";
 
 /**********************
          STYLES
 ***********************/
+.superNarrowInputText {
+  .inputText(0.3)
+}
+
 .narrowInputText {
   .inputText(0.6)
 }
@@ -16,13 +20,24 @@
   .inputText(1.6)
 }
 
+.superWideInputText {
+  .inputText(2.5)
+}
+
 .textAllignedRight {
   text-align: right;
   height: @outputs-and-buttons-height;
 }
 
 .textAllignedRightSpecial {
-  .textAllignedRight;
-  margin-bottom: 15px;
+  .textAllignedSpecial(right)
 }
 
+.textAllignedLeftSpecial {
+  .textAllignedSpecial(left)
+}
+
+.bottom {
+  position: absolute;
+  bottom: 30px;
+}

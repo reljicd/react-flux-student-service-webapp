@@ -29,9 +29,26 @@
 #rezultatiIspitaPanel {
   height: 544px;
 }
+#godinaIspitiPanel {
+  height: 480px;
+  width: 200px;
+}
+#kratakPregledIzlazButton {
+  margin-top: 70px;
+  margin-left: 30px;
+}
+#polIspitaRightAlignedInputText {
+  margin-left: 48px;
+}
 /**********************
          STYLES
 ***********************/
+.superNarrowInputText {
+  position: relative;
+  left: -20px;
+  height: 25px;
+  width: 30px;
+}
 .narrowInputText {
   position: relative;
   left: -20px;
@@ -44,6 +61,12 @@
   height: 25px;
   width: 160px;
 }
+.superWideInputText {
+  position: relative;
+  left: -20px;
+  height: 25px;
+  width: 250px;
+}
 .textAllignedRight {
   text-align: right;
   height: 25px;
@@ -52,4 +75,13 @@
   text-align: right;
   height: 25px;
   margin-bottom: 15px;
+}
+.textAllignedLeftSpecial {
+  text-align: left;
+  height: 25px;
+  margin-bottom: 15px;
+}
+.bottom {
+  position: absolute;
+  bottom: 30px;
 }
