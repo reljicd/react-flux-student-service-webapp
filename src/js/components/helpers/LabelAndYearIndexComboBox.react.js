@@ -8,41 +8,62 @@ var ReactBootstrap = require('react-bootstrap'),
     Row = ReactBootstrap.Row,
     Input = ReactBootstrap.Input,
     Col = ReactBootstrap.Col;
-//var ReactWidgets = require('react-widgets'),
-//    Combobox = ReactWidgets.Combobox;
+var StudentStore = require('../../stores/StudentStore');
+var StudentActionCreators = require('../../actions/StudentActionCreators');
 
 /**
  * ******************************
  *   *** Autocomplete control for student searching ***
  *
  *   Combined Label and custom Search Component
- *   Can be searched by *year*. *index*, *name* or *surname*
+ *   Can be searched by *broj_indeksa*, *ime* or *prezime*
  */
 var LabelAndYearIndexComboBox = React.createClass({
 
     render: function () {
-        //var colors = ['orange', 'red', 'blue', 'purple'];
-        var options = [
-            {value: 'onee', label: 'Onee'},
-            {value: 'two', label: 'Two'}
-        ];
+
+        var getOptions = function(input, callback) {
+            setTimeout(function() {
+                var students = StudentStore.getAll();
+                var options = [];
+                if(input.length >= 3) { //only search for reasults if we entered more than 3 characters
+                    for (var studentId in students) {
+                        var brojIndeksa = students[studentId].id;
+                        var imePrezime = students[studentId].broj_indeksa + ' ' + students[studentId].ime + ' ' + students[studentId].prezime;
+                        options.push({value: brojIndeksa, label: imePrezime});
+                        if (options.count >= 5) break; //break after 5 results
+                    }
+                }
+                callback(null, {
+                    options: options,
+                    // CAREFUL! Only set this to true when there are no more options,
+                    // or more specific queries will not be sent to the server.
+                    complete: false
+                });
+            }, 500);
+        };
 
         return (
             <span>
                 <Row>
-                    <Col md={2}>
-                        <p >Indeks</p>
+                    <Col md={3}>
+                        <p className='textAllignedRight'>Indeks</p>
                     </Col>
-                    <Col md={5} id='yearComboBoxCol' name='year' placeholder='year'>
-                        <Select options={options}/>
-                    </Col>
-                    <Col md={5} id='indexComboBoxCol'>
-                        <Select options={options}/>
+                    <Col md={9}>
+                        <Select asyncOptions={getOptions} matchProp='label' onChange={this._onChange}/>
                     </Col>
                 </Row>
             </span>
         );
+    },
+
+    /**
+     * Event handler for selecting Student
+     */
+    _onChange: function (studentId) {
+        StudentActionCreators.changeStudent(studentId);
     }
+
 });
 
 module.exports = LabelAndYearIndexComboBox;
