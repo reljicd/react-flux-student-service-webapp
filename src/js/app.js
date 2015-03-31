@@ -17,6 +17,7 @@ var Upisi = require('./components/student/upisi/Upisi.react.js');
 var RezultatiIspita = require('./components/student/rezultatiIspita/RezultatiIspita.react.js');
 var KratakPregled = require('./components/student/kratakPregled/KratakPregled.react.js');
 
+var WebAPIUtils = require('./utils/WebAPIUtils');
 var ExampleData = require('./ExampleData');
 
 /**
@@ -24,6 +25,7 @@ var ExampleData = require('./ExampleData');
  *   *** Main React file ***
  *
  *   This file bootstraps the entire application.
+ *   Loads the data
  *   Defines the Main Component.
  *   Configures and runs Router
  */
@@ -32,6 +34,7 @@ window.React = React; // export for http://fb.me/react-devtools
 
 ExampleData.init(); // load example data into localstorage
 
+WebAPIUtils.getAllStudents(); // load data for the first time into the app
 
 /**
  * ******************************

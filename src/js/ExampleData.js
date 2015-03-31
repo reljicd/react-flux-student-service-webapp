@@ -26,7 +26,12 @@ module.exports = {
                 "id": 28,
                 "ime": "Miladin",
                 "prezime": "Radovic"
-            }, {"broj_indeksa": "2010/0430", "id": 31, "ime": "Boris", "prezime": "Suslov"}, {
+            }, {
+                "broj_indeksa": "2010/0430",
+                "id": 31,
+                "ime": "Boris",
+                "prezime": "Suslov"
+            }, {
                 "broj_indeksa": "2009/0028",
                 "id": 29,
                 "ime": "Marko",
@@ -46,7 +51,12 @@ module.exports = {
                 "id": 32,
                 "ime": "Marko",
                 "prezime": "Trailovic"
-            }, {"broj_indeksa": "2011/0122", "id": 36, "ime": "Stefan", "prezime": "Radovic"}, {
+            }, {
+                "broj_indeksa": "2011/0122",
+                "id": 36,
+                "ime": "Stefan",
+                "prezime": "Radovic"
+            }, {
                 "broj_indeksa": "2007/0120",
                 "id": 27,
                 "ime": "Stefan",
