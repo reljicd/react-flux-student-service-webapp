@@ -8,6 +8,8 @@ var ReactBootstrap = require('react-bootstrap'),
     NavItem = ReactBootstrap.NavItem,
     Glyphicon = ReactBootstrap.Glyphicon,
     Navbar = ReactBootstrap.Navbar;
+var ReactRouterBootstrap = require('react-router-bootstrap')
+    , NavItemLink = ReactRouterBootstrap.NavItemLink;
 
 var TopNavbar = React.createClass({
 
@@ -15,7 +17,7 @@ var TopNavbar = React.createClass({
         return (
             <Navbar inverse staticTop brand='IP React/Flux'>
                 <Nav left>
-                    <NavItem eventKey={1} href='#'>Student</NavItem>
+                    <NavItemLink eventKey={1} to='student'>Student</NavItemLink>
                     <NavItem eventKey={2} href='#'>Studije</NavItem>
                     <NavItem eventKey={3} href='#'>Ispitni Rok</NavItem>
                     <NavItem eventKey={4} href='#'>Nastava</NavItem>

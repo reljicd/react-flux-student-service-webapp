@@ -9,56 +9,48 @@ var ReactBootstrap = require('react-bootstrap'),
     NavItem = ReactBootstrap.NavItem,
     Grid = ReactBootstrap.Grid,
     Col = ReactBootstrap.Col;
-var CenterFormSelector = require('../components/CenterFormSelector.react');
+var ReactRouterBootstrap = require('react-router-bootstrap')
+    , NavItemLink = ReactRouterBootstrap.NavItemLink;
+var Router = require('react-router'),
+    RouteHandler = Router.RouteHandler;
 
 var CenterStackedNavTabs = React.createClass({
 
-    getInitialState: function () {
-        return {
-            chosenNavItem: 9
-        };
-    },
-
     render: function () {
+        var defaultURL = '#/student/#';
 
         return (
 
             <Grid>
                 <Panel>
                     <Col md={2}>
-                        <Nav bsStyle='pills' stacked activeKey={this.state.chosenNavItem} onSelect={this._handleSelect}>
-                            <NavItem eventKey={1} >Maticni podaci</NavItem>
-                            <NavItem eventKey={2} >Kadeti</NavItem>
-                            <NavItem eventKey={3} >Upisi</NavItem>
-                            <NavItem eventKey={4} >Predracun skolarine</NavItem>
-                            <NavItem eventKey={5} >Uplata</NavItem>
-                            <NavItem eventKey={6} >Prati / Izbor prof.</NavItem>
-                            <NavItem eventKey={7} >Pregled Prijava</NavItem>
-                            <NavItem eventKey={8} >Zabrana prijave</NavItem>
-                            <NavItem eventKey={9} >Rezultati ispita</NavItem>
-                            <NavItem eventKey={10} >Pregled obaveza</NavItem>
-                            <NavItem eventKey={11} >Spisak</NavItem>
-                            <NavItem eventKey={12} >Obavestenja</NavItem>
-                            <NavItem eventKey={13} >Kratak pregled</NavItem>
-                            <NavItem eventKey={14} >Diploma</NavItem>
-                            <NavItem eventKey={15} >Uverenja</NavItem>
+                        <Nav bsStyle='pills' stacked >
+                            <NavItemLink eventKey={1} to='maticnipodaci'>Maticni podaci</NavItemLink>
+                            <NavItem eventKey={2} href={defaultURL}>Kadeti</NavItem>
+                            <NavItemLink eventKey={3} to='upisi'>Upisi</NavItemLink>
+                            <NavItem eventKey={4} href={defaultURL}>Predracun skolarine</NavItem>
+                            <NavItem eventKey={5} href={defaultURL}>Uplata</NavItem>
+                            <NavItem eventKey={6} href={defaultURL}>Prati / Izbor prof.</NavItem>
+                            <NavItem eventKey={7} href={defaultURL}>Pregled Prijava</NavItem>
+                            <NavItem eventKey={8} href={defaultURL}>Zabrana prijave</NavItem>
+                            <NavItemLink eventKey={9} to='rezultatiispita'>Rezultati ispita</NavItemLink>
+                            <NavItem eventKey={10} href={defaultURL}>Pregled obaveza</NavItem>
+                            <NavItem eventKey={11} href={defaultURL}>Spisak</NavItem>
+                            <NavItem eventKey={12} href={defaultURL}>Obavestenja</NavItem>
+                            <NavItemLink eventKey={9} to='kratakpregled'>Kratak pregled</NavItemLink>
+                            <NavItem eventKey={14} href={defaultURL}>Diploma</NavItem>
+                            <NavItem eventKey={15} href={defaultURL}>Uverenja</NavItem>
                         </Nav>
                     </Col>
                     <Col md={10} >
                         <Panel className='centerForm'>
-                            <CenterFormSelector chosenNavItem={this.state.chosenNavItem}/>
+                            <RouteHandler/>
                         </Panel>
                     </Col>
                 </Panel>
             </Grid>
 
         );
-    },
-
-    _handleSelect: function (selectedKey) {
-        this.setState({
-            chosenNavItem: selectedKey
-        });
     }
 
 });

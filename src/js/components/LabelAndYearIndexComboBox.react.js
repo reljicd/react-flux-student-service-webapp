@@ -26,7 +26,7 @@ var LabelAndYearIndexComboBox = React.createClass({
                     <Col md={2}>
                         <p >Indeks</p>
                     </Col>
-                    <Col md={5} id='yearComboBoxCol'>
+                    <Col md={5} id='yearComboBoxCol' name='year' placeholder='year'>
                         <Select options={options}/>
                     </Col>
                     <Col md={5} id='indexComboBoxCol'>
