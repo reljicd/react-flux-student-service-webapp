@@ -11,11 +11,11 @@ var Router = require('react-router'),
 
 var TopNavbar = require('./components/TopNavbar.react.js');
 var DefaultPage = require('./components/DefaultPage.react.js');
-var StudentPage = require('./components/StudentPage.react.js');
-var MaticniPodaciForm = require('./components/MaticniPodaciForm.react.js');
-var Upisi = require('./components/Upisi.react.js');
-var RezultatiIspita = require('./components/RezultatiIspita.react.js');
-var KratakPregled = require('./components/KratakPregled.react.js');
+var StudentPage = require('./components/student/StudentPage.react.js');
+var MaticniPodaciForm = require('./components/student/maticniPodaci/MaticniPodaciForm.react.js');
+var Upisi = require('./components/student/upisi/Upisi.react.js');
+var RezultatiIspita = require('./components/student/rezultatiIspita/RezultatiIspita.react.js');
+var KratakPregled = require('./components/student/kratakPregled/KratakPregled.react.js');
 
 var ExampleData = require('./ExampleData');
 

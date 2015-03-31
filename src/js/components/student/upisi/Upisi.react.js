@@ -13,8 +13,8 @@ var ReactBootstrap = require('react-bootstrap'),
     ButtonGroup = ReactBootstrap.ButtonGroup,
     Glyphicon = ReactBootstrap.Glyphicon,
     Panel = ReactBootstrap.Panel;
-var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
-var UpisiTable = require('../components/UpisiTable.react');
+var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
+var UpisiTable = require('./UpisiTable.react.js');
 
 /**
  * ******************************

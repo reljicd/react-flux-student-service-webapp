@@ -14,9 +14,9 @@ var ReactBootstrap = require('react-bootstrap'),
     ButtonGroup = ReactBootstrap.ButtonGroup,
     ModalTrigger = ReactBootstrap.ModalTrigger,
     Panel = ReactBootstrap.Panel;
-var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
-var RezultatiIspitaTable = require('../components/RezultatiIspitaTable.react');
-var DodavanjePolozenogIspitaModal = require('../components/DodavanjePolozenogIspitaModal.react');
+var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
+var RezultatiIspitaTable = require('./RezultatiIspitaTable.react.js');
+var DodavanjePolozenogIspitaModal = require('./DodavanjePolozenogIspitaModal.react.js');
 
 /**
  * ******************************

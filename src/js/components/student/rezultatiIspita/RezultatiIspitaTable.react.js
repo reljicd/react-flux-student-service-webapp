@@ -10,9 +10,9 @@ var ReactBootstrap = require('react-bootstrap'),
     Glyphicon = ReactBootstrap.Glyphicon,
     Button = ReactBootstrap.Button,
     OverlayMixin = ReactBootstrap.OverlayMixin;
-var LabelAndComboBox = require('../components/LabelAndComboBox.react');
-var LabelAndDateTimePicker = require('../components/LabelAndDateTimePicker.react');
-var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
+var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
+var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react.js');
+var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
 
 /**
  * ******************************

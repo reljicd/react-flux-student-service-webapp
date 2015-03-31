@@ -9,8 +9,8 @@ var ReactBootstrap = require('react-bootstrap'),
     Panel = ReactBootstrap.Panel,
     Glyphicon = ReactBootstrap.Glyphicon,
     Col = ReactBootstrap.Col;
-var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
-var GodinaIspitiTable = require('../components/GodinaIspitiTable.react');
+var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
+var GodinaIspitiTable = require('./GodinaIspitiTable.react.js');
 
 /**
  * ******************************

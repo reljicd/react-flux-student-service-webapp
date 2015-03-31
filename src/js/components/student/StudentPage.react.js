@@ -4,8 +4,8 @@
 
 var React = require('react');
 
-var TopStudentForm = require('../components/TopStudentForm.react.js');
-var CenterStackedNavTabs = require('../components/CenterStackedNavTabs.react.js');
+var TopStudentForm = require('./TopStudentForm.react.js');
+var CenterStackedNavTabs = require('./CenterStackedNavTabs.react.js');
 
 /**
  * ******************************

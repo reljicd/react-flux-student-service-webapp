@@ -9,7 +9,7 @@ var ReactBootstrap = require('react-bootstrap'),
     Row = ReactBootstrap.Row,
     Input = ReactBootstrap.Input,
     Table = ReactBootstrap.Table;
-var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
+var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
 
 /**
  * ******************************

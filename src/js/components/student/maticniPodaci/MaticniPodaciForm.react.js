@@ -12,8 +12,8 @@ var ReactBootstrap = require('react-bootstrap'),
     Grid = ReactBootstrap.Grid,
     Glyphicon = ReactBootstrap.Glyphicon,
     Col = ReactBootstrap.Col;
-var MaticniPodaciLeftForm = require('../components/MaticniPodaciLeftForm.react');
-var MaticniPodaciRightForm = require('../components/MaticniPodaciRightForm.react');
+var MaticniPodaciLeftForm = require('./MaticniPodaciLeftForm.react.js');
+var MaticniPodaciRightForm = require('./MaticniPodaciRightForm.react.js');
 
 /**
  * ******************************

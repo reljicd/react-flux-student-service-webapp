@@ -15,8 +15,8 @@ var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
     Grid = ReactBootstrap.Grid,
     Col = ReactBootstrap.Col;
-var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
-var LabelAndYearIndexComboBox = require('../components/LabelAndYearIndexComboBox.react.js');
+var LabelAndDisabledInputText = require('../helpers/LabelAndDisabledInputText.react.js');
+var LabelAndYearIndexComboBox = require('../helpers/LabelAndYearIndexComboBox.react.js');
 
 var TopStudentForm = React.createClass({
 

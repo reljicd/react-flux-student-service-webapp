@@ -12,9 +12,9 @@ var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
     Modal = ReactBootstrap.Modal;
 
-var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
-var LabelAndDateTimePicker = require('../components/LabelAndDateTimePicker.react');
-var LabelAndComboBox = require('../components/LabelAndComboBox.react');
+var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
+var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react.js');
+var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
 
 /**
  * ******************************
