@@ -10,6 +10,10 @@ var ReactBootstrap = require('react-bootstrap'),
 var ReactWidgets = require('react-widgets'),
     DateTimePicker = ReactWidgets.DateTimePicker;
 
+/**
+ * ******************************
+ *   *** Combined Label and custom DateTime Component ***
+ */
 var LabelAndDateTimePicker = React.createClass({
 
     render: function () {

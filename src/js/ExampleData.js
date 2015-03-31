@@ -2,6 +2,10 @@
  * Created by Dusan on 3/29/2015.
  */
 
+/**
+ * ******************************
+ *   *** Static Example Data ***
+ */
 module.exports = {
 
     init: function () {

@@ -12,6 +12,10 @@ var ReactBootstrap = require('react-bootstrap'),
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 var GodinaIspitiTable = require('../components/GodinaIspitiTable.react');
 
+/**
+ * ******************************
+ *   *** Kratak Pregled section of the Student Page ***
+ */
 var KratakPregled = React.createClass({
 
     render: function () {

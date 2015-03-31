@@ -18,6 +18,10 @@ var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText
 var RezultatiIspitaTable = require('../components/RezultatiIspitaTable.react');
 var DodavanjePolozenogIspitaModal = require('../components/DodavanjePolozenogIspitaModal.react');
 
+/**
+ * ******************************
+ *   *** Rezultati Ispita section of the Student Page ***
+ */
 var RezultatiIspita = React.createClass({
 
     render: function () {
@@ -52,7 +56,8 @@ var RezultatiIspita = React.createClass({
                     </Col>
                     <Col md={2} xsOffset={6}>
                         <Button bsStyle='primary'>
-                            <Glyphicon glyph='remove' /> Izlaz</Button>
+                            <Glyphicon glyph='remove' />
+                            Izlaz</Button>
                     </Col>
                 </ Row >
             </span>

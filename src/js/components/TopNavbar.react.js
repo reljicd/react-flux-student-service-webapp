@@ -11,6 +11,12 @@ var ReactBootstrap = require('react-bootstrap'),
 var ReactRouterBootstrap = require('react-router-bootstrap')
     , NavItemLink = ReactRouterBootstrap.NavItemLink;
 
+/**
+ * ******************************
+ *   *** Main Navigation Bar Component ***
+ *
+ *   Sits on the top of the UI all the time
+ */
 var TopNavbar = React.createClass({
 
     render: function () {

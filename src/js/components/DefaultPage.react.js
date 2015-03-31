@@ -4,6 +4,12 @@
 
 var React = require('react');
 
+/**
+ * ******************************
+ *   *** Default Page Component ***
+ *
+ *   Page to show whenever router hit unknown route
+ */
 var DefaultPage = React.createClass({
     render: function () {
         return (

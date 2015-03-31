@@ -7,6 +7,10 @@ var React = require('react');
 var TopStudentForm = require('../components/TopStudentForm.react.js');
 var CenterStackedNavTabs = require('../components/CenterStackedNavTabs.react.js');
 
+/**
+ * ******************************
+ *   *** Student Page ***
+ */
 var StudentPage = React.createClass({
     render: function () {
         return (

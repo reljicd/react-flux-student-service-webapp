@@ -1,7 +1,5 @@
 /**
  * Created by reljicd on 3/27/15.
- *
- * This file bootstraps the entire application.
  */
 
 var React = require('react');
@@ -21,6 +19,14 @@ var KratakPregled = require('./components/KratakPregled.react.js');
 
 var ExampleData = require('./ExampleData');
 
+/**
+ * ******************************
+ *   *** Main React file ***
+ *
+ *   This file bootstraps the entire application.
+ *   Defines the Main Component.
+ *   Configures and runs Router
+ */
 
 window.React = React; // export for http://fb.me/react-devtools
 

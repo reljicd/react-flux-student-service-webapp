@@ -11,6 +11,13 @@ var ReactBootstrap = require('react-bootstrap'),
 //var ReactWidgets = require('react-widgets'),
 //    Combobox = ReactWidgets.Combobox;
 
+/**
+ * ******************************
+ *   *** Autocomplete control for student searching ***
+ *
+ *   Combined Label and custom Search Component
+ *   Can be searched by *year*. *index*, *name* or *surname*
+ */
 var LabelAndYearIndexComboBox = React.createClass({
 
     render: function () {

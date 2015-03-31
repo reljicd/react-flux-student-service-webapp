@@ -2,6 +2,12 @@
  * Created by Dusan on 3/28/2015.
  */
 
+/**
+ * ******************************
+ *   *** Form on top of the Student Page ***
+ *
+ *      Visible always on Student Page
+ */
 var React = require('react');
 var ReactBootstrap = require('react-bootstrap'),
     Panel = ReactBootstrap.Panel,
@@ -20,6 +26,7 @@ var TopStudentForm = React.createClass({
                 <Panel>
                     <Row>
                         <Col md={3}>
+                         {/*  Autocomplete control for student searching */}
                             <LabelAndYearIndexComboBox/>
                         </Col>
                         <Col md={3}>

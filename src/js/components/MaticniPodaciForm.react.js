@@ -15,6 +15,10 @@ var ReactBootstrap = require('react-bootstrap'),
 var MaticniPodaciLeftForm = require('../components/MaticniPodaciLeftForm.react');
 var MaticniPodaciRightForm = require('../components/MaticniPodaciRightForm.react');
 
+/**
+ * ******************************
+ *   *** Maticni Podaci section of the Student Page ***
+ */
 var MaticniPodaciForm = React.createClass({
 
     render: function () {

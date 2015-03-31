@@ -10,6 +10,10 @@ var ReactBootstrap = require('react-bootstrap'),
     Col = ReactBootstrap.Col;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
+/**
+ * ******************************
+ *   *** Left Form on Maticni Podaci section of the Student Page ***
+ */
 var MaticniPodaciLeftForm = React.createClass({
 
     render: function () {

@@ -10,6 +10,12 @@ var ReactBootstrap = require('react-bootstrap'),
 var ReactWidgets = require('react-widgets'),
     Combobox = ReactWidgets.Combobox;
 
+/**
+ * ******************************
+ *   *** Autocomplete control ***
+ *
+ *   Combined Label and custom Combobox Component
+ */
 var LabelAndComboBox = React.createClass({
 
     render: function () {

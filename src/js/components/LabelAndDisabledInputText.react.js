@@ -8,6 +8,17 @@ var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
     Col = ReactBootstrap.Col;
 
+/**
+ * ******************************
+ *   *** Combined Label and Disabled Input Text Component ***
+ *
+ *  Helper Component
+ *
+ *  @param {string} label
+ *  @param {string} inputTextValue
+ *  @param {boolean} enabled - Pass *true* if you want to enable Input Text
+ *  @param {boolean} narrow [narrow=wideInputText] - Pass *true* if you want to narrow it
+ */
 var LabelAndDisabledInputText = React.createClass({
 
     render: function () {

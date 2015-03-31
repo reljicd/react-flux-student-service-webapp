@@ -7,6 +7,10 @@ var ReactBootstrap = require('react-bootstrap'),
     Panel = ReactBootstrap.Panel;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
+/**
+ * ******************************
+ *   *** Right Form on Maticni Podaci section of the Student Page ***
+ */
 var MaticniPodaciRightForm = React.createClass({
 
     render: function () {

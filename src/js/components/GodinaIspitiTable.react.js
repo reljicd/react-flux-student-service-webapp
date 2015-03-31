@@ -11,6 +11,14 @@ var ReactBootstrap = require('react-bootstrap'),
     Table = ReactBootstrap.Table;
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
+/**
+ * ******************************
+ *   *** Godina i Ispiti Table of Kratak Pregled section of the Student Page ***
+ *
+ *  Helper Component
+ *
+ *  @param {string} godina - Pass number *n* of the year
+ */
 var GodinaIspitiTable = React.createClass({
 
     render: function () {

@@ -16,6 +16,10 @@ var ReactBootstrap = require('react-bootstrap'),
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 var UpisiTable = require('../components/UpisiTable.react');
 
+/**
+ * ******************************
+ *   *** Upisi section of the Student Page ***
+ */
 var Upisi = React.createClass({
 
     render: function () {

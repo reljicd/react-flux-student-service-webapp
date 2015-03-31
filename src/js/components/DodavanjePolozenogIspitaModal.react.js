@@ -16,6 +16,10 @@ var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText
 var LabelAndDateTimePicker = require('../components/LabelAndDateTimePicker.react');
 var LabelAndComboBox = require('../components/LabelAndComboBox.react');
 
+/**
+ * ******************************
+ *   *** Dodavanje Polozenog Ispita Modal of Rezultati Ispita section of the Student Page ***
+ */
 var DodavanjePolozenogIspitaModal = React.createClass({
 
     render: function () {

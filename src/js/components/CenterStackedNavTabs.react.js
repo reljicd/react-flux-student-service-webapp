@@ -14,6 +14,12 @@ var ReactRouterBootstrap = require('react-router-bootstrap')
 var Router = require('react-router'),
     RouteHandler = Router.RouteHandler;
 
+/**
+ * ******************************
+ *   *** Left Navigation Bar on Student Page ***
+ *
+ *   Provides navigation to different sections of the Student Page
+ */
 var CenterStackedNavTabs = React.createClass({
 
     render: function () {

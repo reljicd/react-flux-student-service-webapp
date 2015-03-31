@@ -14,6 +14,10 @@ var LabelAndComboBox = require('../components/LabelAndComboBox.react');
 var LabelAndDateTimePicker = require('../components/LabelAndDateTimePicker.react');
 var LabelAndDisabledInputText = require('../components/LabelAndDisabledInputText.react');
 
+/**
+ * ******************************
+ *   *** Rezultati Ispita Table of Rezultati Ispita section of the Student Page ***
+ */
 var RezultatiIspitaTable = React.createClass({
     mixins: [OverlayMixin],
 
