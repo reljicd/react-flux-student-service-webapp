@@ -14,19 +14,39 @@ var ReactBootstrap = require('react-bootstrap'),
     Col = ReactBootstrap.Col;
 var MaticniPodaciLeftForm = require('./MaticniPodaciLeftForm.react.js');
 var MaticniPodaciRightForm = require('./MaticniPodaciRightForm.react.js');
+var StudentStore = require('../../../stores/StudentStore');
 
 /**
  * ******************************
  *   *** Maticni Podaci section of the Student Page ***
  */
+
+function getStateFromStores() {
+    return {
+        student: StudentStore.get(StudentStore.getChosenStudentID())
+    };
+}
+
 var MaticniPodaciForm = React.createClass({
+
+    getInitialState: function () {
+        return getStateFromStores();
+    },
+
+    componentDidMount: function () {
+        StudentStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function () {
+        StudentStore.removeChangeListener(this._onChange);
+    },
 
     render: function () {
         return (
             <span>
                 <Row>
                     <Col md={5}>
-                        <MaticniPodaciLeftForm/>
+                        <MaticniPodaciLeftForm student={this.state.student}/>
                     </Col>
                     <Col md={7}>
                         <Row>
@@ -50,13 +70,24 @@ var MaticniPodaciForm = React.createClass({
                 < Row >
                     <Col md={3} xsOffset={9}>
                         <ButtonToolbar>
-                            <Button bsStyle='primary'><Glyphicon glyph='ok' /> Azuriraj</Button>
-                            <Button bsStyle='primary'><Glyphicon glyph='remove' /> Izlaz</Button>
+                            <Button bsStyle='primary'>
+                                <Glyphicon glyph='ok' />
+                            Azuriraj</Button>
+                            <Button bsStyle='primary'>
+                                <Glyphicon glyph='remove' />
+                            Izlaz</Button>
                         </ButtonToolbar>
                     </Col>
                 </ Row >
             </span>
         );
+    },
+
+    /**
+     * Event handler for 'change' events coming from the StudentStore
+     */
+    _onChange: function () {
+        this.setState(getStateFromStores());
     }
 });
 

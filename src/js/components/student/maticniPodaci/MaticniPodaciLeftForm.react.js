@@ -13,15 +13,20 @@ var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText
 /**
  * ******************************
  *   *** Left Form on Maticni Podaci section of the Student Page ***
+ *
+ *   @param {object} student
  */
 var MaticniPodaciLeftForm = React.createClass({
 
     render: function () {
+
+        var student = this.props.student;
+
         return (
             <Panel id='maticniPodaciLeftFormPanel'>
                 <h4>Student</h4>
-                <LabelAndDisabledInputText label='Ime' inputTextValue=''/>
-                <LabelAndDisabledInputText label='Prezime' inputTextValue=''/>
+                <LabelAndDisabledInputText label='Ime' inputTextValue={student.ime}/>
+                <LabelAndDisabledInputText label='Prezime' inputTextValue={student.prezime}/>
                 <LabelAndDisabledInputText label='Srednje Ime' inputTextValue=''/>
                 <Row>
                     <Col md={5}>
@@ -42,7 +47,7 @@ var MaticniPodaciLeftForm = React.createClass({
                         <Panel className='polPanel'>
                         Pol
                             <Input type='radio' label='Muski' name='optionsRadios'  />
-                            <Input type='radio' label='Zenski' name='optionsRadios' checked  />
+                            <Input type='radio' label='Zenski' name='optionsRadios' defaultChecked/>
                         </Panel>
                         <Input type='checkbox' label='Stranac' />
                         <Input type='checkbox' label='Zaposlen' />
