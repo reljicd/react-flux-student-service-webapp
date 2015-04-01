@@ -21,6 +21,7 @@ var argv = require('yargs').argv,
     gulp = require('gulp'),
     gutil = require('gulp-util'),
     gulpif = require('gulp-if'),
+    gzip = require('gulp-gzip'),
 
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
@@ -106,6 +107,12 @@ gulp.task('watchify', function () {
 
 gulp.task('csswatch', function () {
     gulp.watch(cssFiles, ['css']);
+});
+
+gulp.task('compress', function() {
+    gulp.src('./dist/js/*.js')
+        .pipe(gzip())
+        .pipe(gulp.dest(outputJsDirectory));
 });
 
 gulp.task('watch', ['watchify', 'csswatch']);
