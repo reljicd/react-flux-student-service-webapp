@@ -10,10 +10,34 @@ var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText
 /**
  * ******************************
  *   *** Upisi Table of Upisi section of the Student Page ***
+ *
+ *      @param {object} upisiForChosenStudent
  */
 var UpisiTable = React.createClass({
 
     render: function () {
+
+        var upisiForChosenStudent = this.props.upisiForChosenStudent;
+        var rows = [];
+
+        for (var upisiForChosenStudentId in upisiForChosenStudent) {
+            rows.push(
+                <tr>
+                    <td>{upisiForChosenStudent[upisiForChosenStudentId].godinaStudija.skraceni_naziv}</td>
+                    <td>{upisiForChosenStudent[upisiForChosenStudentId].skolskaGodina.skraceni_naziv}</td>
+                    <td>B</td>
+                    <td>{upisiForChosenStudent[upisiForChosenStudentId].studijskiProgram.skraceni_naziv}</td>
+                    <td>{upisiForChosenStudent[upisiForChosenStudentId].datum_upisa}</td>
+                    <td>1</td>
+                    <td>standardno</td>
+                    <td></td>
+                    <td>10</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            )
+        }
+
         return (
             <Table striped bordered condensed hover>
                 <thead>
@@ -31,47 +55,7 @@ var UpisiTable = React.createClass({
                         <th>Napomena</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                        <td>@fat</td>
-                    </tr>
-                </tbody>
+                <tbody>{rows}</tbody>
             </Table>
         );
     }

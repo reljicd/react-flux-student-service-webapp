@@ -15,12 +15,31 @@ var ReactBootstrap = require('react-bootstrap'),
     Panel = ReactBootstrap.Panel;
 var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
 var UpisiTable = require('./UpisiTable.react.js');
+var UpisStore = require('../../../stores/UpisStore');
 
 /**
  * ******************************
  *   *** Upisi section of the Student Page ***
  */
+function getStateFromStores() {
+    return {
+        upisiForChosenStudent: UpisStore.getUpisiForChosenStudent()
+    };
+}
+
 var Upisi = React.createClass({
+
+    getInitialState: function() {
+        return getStateFromStores();
+    },
+
+    componentDidMount: function() {
+        UpisStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function() {
+        UpisStore.removeChangeListener(this._onChange);
+    },
 
     render: function () {
         return (
@@ -32,24 +51,41 @@ var Upisi = React.createClass({
                     </Nav>
                     <ButtonToolbar>
                         <ButtonGroup>
-                            <Button><b>Upis godine</b></Button>
-                            <Button><b>Obnova godine</b></Button>
-                            <Button><b>Ispis</b></Button>
-                            <Button><b>Zakljucaj</b></Button>
+                            <Button>
+                                <b>Upis godine</b>
+                            </Button>
+                            <Button>
+                                <b>Obnova godine</b>
+                            </Button>
+                            <Button>
+                                <b>Ispis</b>
+                            </Button>
+                            <Button>
+                                <b>Zakljucaj</b>
+                            </Button>
                         </ButtonGroup>
                     </ButtonToolbar>
-                    <UpisiTable/>
+                    <UpisiTable upisiForChosenStudent={this.state.upisiForChosenStudent}/>
                 </Panel>
                 < Row >
                     <Col md={4}>
                         <LabelAndDisabledInputText label='Trajanje stud.' inputTextValue=''/>
                     </Col>
                     <Col md={2} xsOffset={6}>
-                        <Button bsStyle='primary'><Glyphicon glyph='remove' /> Izlaz</Button>
+                        <Button bsStyle='primary'>
+                            <Glyphicon glyph='remove' />
+                        Izlaz</Button>
                     </Col>
                 </ Row >
             </span>
         );
+    },
+
+    /**
+     * Event handler for 'change' events coming from the StudentStore
+     */
+    _onChange: function () {
+        this.setState(getStateFromStores());
     }
 });
 
