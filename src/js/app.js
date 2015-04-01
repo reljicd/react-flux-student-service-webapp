@@ -34,7 +34,15 @@ window.React = React; // export for http://fb.me/react-devtools
 
 ExampleData.init(); // load example data into localstorage
 
-WebAPIUtils.getAllStudents(); // load data for the first time into the app
+WebAPIUtils.getAllStudents(); // load *Student* data for the first time into the app
+WebAPIUtils.getAllPredmets(); // load *Predmet* data for the first time into the app
+WebAPIUtils.getAllGodinaStudijas(); // load *Godina Studija* data for the first time into the app
+WebAPIUtils.getAllRoks(); // load *Rok* data for the first time into the app
+WebAPIUtils.getAllNacinFinansiranjas(); // load *Nacin Finansiranja* data for the first time into the app
+WebAPIUtils.getAllSkolskaGodinas(); // load *Skolska Godina* data for the first time into the app
+WebAPIUtils.getAllStudijskiPrograms(); // load *Studijski Program* data for the first time into the app
+WebAPIUtils.getAllUpiss(); // load *Upis* data for the first time into the app
+WebAPIUtils.getAllRezultatIspitas(); // load *Rezultat Ispita* data for the first time into the app
 
 /**
  * ******************************

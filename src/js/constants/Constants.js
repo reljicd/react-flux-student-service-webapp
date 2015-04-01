@@ -9,7 +9,15 @@ module.exports = {
     ActionTypes: keyMirror({
         CHOOSE_STUDENT: null,
         RECEIVE_STUDENTS: null,
-        RECEIVE_RAW_STUDENTS: null
+        RECEIVE_RAW_STUDENTS: null,
+        RECEIVE_RAW_PREDMETS: null,
+        RECEIVE_RAW_GODINASTUDIJAS: null,
+        RECEIVE_RAW_ROKS: null,
+        RECEIVE_RAW_NACINFINANSIRANJAS: null,
+        RECEIVE_RAW_SKOLSKAGODINAS: null,
+        RECEIVE_RAW_STUDIJSKIPROGRAMS: null,
+        RECEIVE_RAW_UPISS: null,
+        RECEIVE_RAW_REZULTATISPITAS: null
     })
 
 };
