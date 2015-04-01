@@ -29,11 +29,11 @@ function _changeChosenStudentID(studentId) {
     _chosenStudentID = studentId;
 }
 
-var studentStore = assign({}, EventEmitter.prototype, {
+var StudentStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function () {
         this.emit(CHANGE_EVENT);
-      //  console.log('Loaded All Students from Memory: ' + JSON.stringify(this.getAll()));
+        //  console.log('Loaded All Students from Memory: ' + JSON.stringify(this.getAll()));
     },
 
     /**
@@ -49,6 +49,9 @@ var studentStore = assign({}, EventEmitter.prototype, {
 
     /**
      * @param {string} id
+     *
+     * *for testing purposes*
+     * *If id is undefined, returns student[27]*
      */
     get: function (id) {
         if (id === undefined) {
@@ -63,24 +66,33 @@ var studentStore = assign({}, EventEmitter.prototype, {
         return _students;
     },
 
+    /**
+     * *for testing purposes*
+     * *If _chosenStudentID is undefined, returns 27*
+     */
     getChosenStudentID: function () {
-        return _chosenStudentID;
+        if (_chosenStudentID === undefined) {
+            return 27;
+        } else {
+            return _chosenStudentID;
+        }
+
     }
 
 });
 
-studentStore.dispatchToken = AppDispatcher.register(function (action) {
+StudentStore.dispatchToken = AppDispatcher.register(function (action) {
 
     switch (action.type) {
 
         case ActionTypes.RECEIVE_RAW_STUDENTS:
             _addStudents(action.rawStudents);
-            studentStore.emitChange();
+            StudentStore.emitChange();
             break;
 
         case ActionTypes.CHOOSE_STUDENT:
             _changeChosenStudentID(action.studentId);
-            studentStore.emitChange();
+            StudentStore.emitChange();
             break;
 
         default:
@@ -89,4 +101,4 @@ studentStore.dispatchToken = AppDispatcher.register(function (action) {
 
 });
 
-module.exports = studentStore;
+module.exports = StudentStore;

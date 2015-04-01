@@ -5,6 +5,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var Constants = require('../constants/Constants');
 var RezultatIspitaUtils = require('../utils/RezultatIspitaUtils');
+var StudentStore = require('../stores/StudentStore');
 var EventEmitter = require('events').EventEmitter;
 var assign = require('object-assign');
 
@@ -12,6 +13,7 @@ var ActionTypes = Constants.ActionTypes;
 var CHANGE_EVENT = 'change';
 
 var _rezultatIspitas = {};
+var _rezultatiIspitaForChosenStudent = {};
 
 function _addRezultatIspitas(rawRezultatIspitas) {
     rawRezultatIspitas.forEach(function (message) {
@@ -23,11 +25,22 @@ function _addRezultatIspitas(rawRezultatIspitas) {
     });
 }
 
+function _addRezultatiIspitaForChosenStudent() {
+    _rezultatiIspitaForChosenStudent = {}; // clear old data
+    var chosenStudentId = StudentStore.getChosenStudentID();
+    for (var rezultatIspitaId in _rezultatIspitas) {
+        if (chosenStudentId == _rezultatIspitas[rezultatIspitaId].student.id)
+            _rezultatiIspitaForChosenStudent[rezultatIspitaId] = _rezultatIspitas[rezultatIspitaId];
+    }
+    ;
+}
+
 var rezultatIspitaStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function () {
         this.emit(CHANGE_EVENT);
         //console.log('Loaded New RezultatIspitas: ' + JSON.stringify(this.getAll()));
+        //console.log('RezultatiIspitaForChosenStudent: ' + JSON.stringify(this.getRezultatiIspitaForChosenStudent()));
     },
 
     /**
@@ -55,6 +68,10 @@ var rezultatIspitaStore = assign({}, EventEmitter.prototype, {
 
     getAll: function () {
         return _rezultatIspitas;
+    },
+
+    getRezultatiIspitaForChosenStudent: function () {
+        return _rezultatiIspitaForChosenStudent;
     }
 
 });
@@ -65,6 +82,15 @@ rezultatIspitaStore.dispatchToken = AppDispatcher.register(function (action) {
 
         case ActionTypes.RECEIVE_RAW_REZULTATISPITAS:
             _addRezultatIspitas(action.rawRezultatIspitas);
+            _addRezultatiIspitaForChosenStudent()
+            rezultatIspitaStore.emitChange();
+            break;
+
+        case ActionTypes.CHOOSE_STUDENT:
+            // Because this data depends on the *Student* data,
+            // wait for StudentStore to do its thing first
+            AppDispatcher.waitFor([StudentStore.dispatchToken]);
+            _addRezultatiIspitaForChosenStudent()
             rezultatIspitaStore.emitChange();
             break;
 
