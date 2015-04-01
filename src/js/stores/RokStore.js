@@ -45,12 +45,7 @@ var rokStore = assign({}, EventEmitter.prototype, {
      * @param {string} id
      */
     get: function (id) {
-        if (id === undefined) {
-            return _roks[27];
-        } else {
-            return _roks[id];
-        }
-
+        return _godinaStudijas[id];
     },
 
     getAll: function () {

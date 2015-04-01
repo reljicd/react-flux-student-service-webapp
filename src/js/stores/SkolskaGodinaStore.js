@@ -45,12 +45,7 @@ var skolskaGodinaStore = assign({}, EventEmitter.prototype, {
      * @param {string} id
      */
     get: function (id) {
-        if (id === undefined) {
-            return _skolskaGodinas[27];
-        } else {
-            return _skolskaGodinas[id];
-        }
-
+        return _godinaStudijas[id];
     },
 
     getAll: function () {

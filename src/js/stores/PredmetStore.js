@@ -45,12 +45,7 @@ var predmetStore = assign({}, EventEmitter.prototype, {
      * @param {string} id
      */
     get: function (id) {
-        if (id === undefined) {
-            return _predmets[27];
-        } else {
-            return _predmets[id];
-        }
-
+        return _godinaStudijas[id];
     },
 
     getAll: function () {

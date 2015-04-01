@@ -45,12 +45,7 @@ var studijskiProgramStore = assign({}, EventEmitter.prototype, {
      * @param {string} id
      */
     get: function (id) {
-        if (id === undefined) {
-            return _studijskiPrograms[27];
-        } else {
-            return _studijskiPrograms[id];
-        }
-
+        return _godinaStudijas[id];
     },
 
     getAll: function () {

@@ -45,12 +45,7 @@ var nacinFinansiranjaStore = assign({}, EventEmitter.prototype, {
      * @param {string} id
      */
     get: function (id) {
-        if (id === undefined) {
-            return _nacinFinansiranjas[27];
-        } else {
-            return _nacinFinansiranjas[id];
-        }
-
+        return _godinaStudijas[id];
     },
 
     getAll: function () {

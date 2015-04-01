@@ -45,12 +45,7 @@ var godinaStudijaStore = assign({}, EventEmitter.prototype, {
      * @param {string} id
      */
     get: function (id) {
-        if (id === undefined) {
-            return _godinaStudijas[27];
-        } else {
-            return _godinaStudijas[id];
-        }
-
+        return _godinaStudijas[id];
     },
 
     getAll: function () {
