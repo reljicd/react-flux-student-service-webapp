@@ -37,7 +37,7 @@ function _addUpisiForChosenStudent() {
 }
 
 function _calculatePoslednjiUpis() {
-    _poslednjiUpis = _upisiForChosenStudent[0]; //reset data
+    _poslednjiUpis = undefined; // clear old data
     var lastYear = 1900;
     for (var upisId in _upisiForChosenStudent) {
         var godinaUpisa = _upisiForChosenStudent[upisId].datum_upisa.slice(0, 4);
