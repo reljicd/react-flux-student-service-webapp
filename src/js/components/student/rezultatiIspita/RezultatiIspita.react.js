@@ -17,12 +17,32 @@ var ReactBootstrap = require('react-bootstrap'),
 var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
 var RezultatiIspitaTable = require('./RezultatiIspitaTable.react.js');
 var DodavanjePolozenogIspitaModal = require('./DodavanjePolozenogIspitaModal.react.js');
+var RezultatIspitaStore = require('../../../stores/RezultatIspitaStore');
 
 /**
  * ******************************
  *   *** Rezultati Ispita section of the Student Page ***
  */
+
+function getStateFromStores() {
+    return {
+        rezultatiIspitaForChosenStudent: RezultatIspitaStore.getRezultatiIspitaForChosenStudent()
+    };
+}
+
 var RezultatiIspita = React.createClass({
+
+    getInitialState: function () {
+        return getStateFromStores();
+    },
+
+    componentDidMount: function () {
+        RezultatIspitaStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount: function () {
+        RezultatIspitaStore.removeChangeListener(this._onChange);
+    },
 
     render: function () {
         return (
@@ -48,7 +68,7 @@ var RezultatiIspita = React.createClass({
                             </ModalTrigger>
                         </ButtonGroup>
                     </ButtonToolbar>
-                    <RezultatiIspitaTable/>
+                    <RezultatiIspitaTable rezultatiIspitaForChosenStudent={this.state.rezultatiIspitaForChosenStudent}/>
                 </Panel>
                 < Row >
                     <Col md={4}>
@@ -57,11 +77,18 @@ var RezultatiIspita = React.createClass({
                     <Col md={2} xsOffset={6}>
                         <Button bsStyle='primary'>
                             <Glyphicon glyph='remove' />
-                            Izlaz</Button>
+                        Izlaz</Button>
                     </Col>
                 </ Row >
             </span>
         );
+    },
+
+    /**
+     * Event handler for 'change' events coming from the StudentStore
+     */
+    _onChange: function () {
+        this.setState(getStateFromStores());
     }
 });
 
