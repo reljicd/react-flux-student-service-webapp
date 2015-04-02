@@ -67,7 +67,7 @@ var DodavanjeUpisaModal = React.createClass({
             <Modal {...this.props} bsStyle='primary' title='Dodavanje Upisa' animation={true}>
                 <div className='modal-body'>
                     <form className='form-horizontal'>
-                        <LabelAndDateTimePicker label='Datum upisa' defaultDate={new Date(this.state.newUpis.datum_upisa)} onUserInput={this._onUpdatedDate}/>
+                        <LabelAndDateTimePicker label='Datum upisa' defaultDate={new Date()} onUserInput={this._onUpdatedDate}/>
                         <LabelAndComboBox data={this.props.godineStudija} label='Godina studija' defaultValueId={this.state.newUpis.godinaStudija.id} onUserInput={this._onUpdatedGodinaStudija}/>
                         <LabelAndComboBox data={this.props.naciniFinansiranja} label='Nacin finansiranja' defaultValueId={this.state.newUpis.nacinFinansiranja.id} onUserInput={this._onUpdatedNacinFinansiranja}/>
                         <LabelAndComboBox data={this.props.skolskeGodine} label='Skolska godina' defaultValueId={this.state.newUpis.skolskaGodina.id} onUserInput={this._onUpdatedSkolskaGodina}/>
@@ -78,10 +78,10 @@ var DodavanjeUpisaModal = React.createClass({
                     <ButtonToolbar>
                         <Button bsStyle='primary' onClick={this._onDodaj}>
                             <Glyphicon glyph='ok' />
-                            Dodaj</Button>
+                        Dodaj</Button>
                         <Button bsStyle='primary' onClick={this.props.onRequestHide}>
                             <Glyphicon glyph='remove' />
-                            Izlaz</Button>
+                        Izlaz</Button>
                     </ButtonToolbar>
                 </div>
             </Modal>
@@ -90,7 +90,8 @@ var DodavanjeUpisaModal = React.createClass({
     },
 
     getFormatedDate: function (rawdate) {
-        return rawdate.getFullYear() + '-' + rawdate.getMonth() + '-' + rawdate.getDate();
+        var month = rawdate.getMonth() + 1;
+        return rawdate.getFullYear() + '-' + month + '-' + rawdate.getDate();
     }
 
 });

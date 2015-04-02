@@ -60,7 +60,8 @@ var LabelAndDateTimePicker = React.createClass({
     },
 
     getFormatedDate: function (rawdate) {
-        return rawdate.getFullYear() + '-' + rawdate.getMonth() + '-' + rawdate.getDate();
+        var month = rawdate.getMonth() + 1;
+        return rawdate.getFullYear() + '-' + month + '-' + rawdate.getDate();
     }
 
 });
