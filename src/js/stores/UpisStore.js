@@ -30,6 +30,7 @@ function _addUpiss(rawUpiss) {
 }
 
 function _makeNewUpis(newUpis) {
+    newUpis.id = _upisIdCounter;
     _upiss[_upisIdCounter] = newUpis;
     _upisIdCounter++;
     _addUpisiForChosenStudent();
@@ -66,8 +67,8 @@ var upisStore = assign({}, EventEmitter.prototype, {
     emitChange: function () {
         this.emit(CHANGE_EVENT);
        // console.log('Loaded New Upiss: ' + JSON.stringify(this.getAll()));
-        console.log('UpisiForChosenStudent: ' + JSON.stringify(this.getUpisiForChosenStudent()));
-        console.log('Loaded New PoslednjiUpis: ' + JSON.stringify(this.getPoslednjiUpis()));
+       // console.log('UpisiForChosenStudent: ' + JSON.stringify(this.getUpisiForChosenStudent()));
+       // console.log('Loaded New PoslednjiUpis: ' + JSON.stringify(this.getPoslednjiUpis()));
     },
 
     /**

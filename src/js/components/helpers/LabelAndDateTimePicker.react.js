@@ -47,7 +47,7 @@ var LabelAndDateTimePicker = React.createClass({
     },
 
     _onSelect: function (value) {
-        console.log("Selected date: " + JSON.stringify(value) + ' and formated: ' + this.getFormatedDate(value));
+        //console.log("Selected date: " + JSON.stringify(value) + ' and formated: ' + this.getFormatedDate(value));
         this.setState({
             value: value
         });

@@ -63,7 +63,7 @@ var LabelAndComboBox = React.createClass({
     },
 
     _onSelect: function (value) {
-        console.log("Selected: " + JSON.stringify(value));
+        //console.log("Selected: " + JSON.stringify(value));
         this.setState({
             value: value
         });

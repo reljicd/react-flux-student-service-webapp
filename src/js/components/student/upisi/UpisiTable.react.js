@@ -15,6 +15,7 @@ var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText
 var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react.js');
 var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
 var UpisActionCreators = require('../../../actions/UpisActionCreators');
+var UpisUtils = require('../../../utils/UpisUtils');
 
 /**
  * ******************************
@@ -63,16 +64,15 @@ var UpisiTable = React.createClass({
     }
 });
 
-//helper variable, to store temporary modal values for changing *Upis*
-var updatedUpisForChosenStudent = {};
-
 var UpisiTableRow = React.createClass({
 
     mixins: [OverlayMixin],
 
     getInitialState: function () {
         return {
-            isModalOpen: false
+            isModalOpen: false,
+            updatedUpisForChosenStudent: UpisUtils.convertRawUpis(this.props.upisForChosenStudent)
+
         };
     },
 
@@ -98,45 +98,34 @@ var UpisiTableRow = React.createClass({
     },
 
     _onClick: function () {
-        updatedUpisForChosenStudent = this.props.upisForChosenStudent;
         console.log("Selected row: " + this.props.upisForChosenStudent.id);
         this.handleToggle();
     },
 
     _onAzuriraj: function () {
         console.log("Azuriran upis: " + this.props.upisForChosenStudent.id);
-        UpisActionCreators.changeUpis(updatedUpisForChosenStudent);
+        UpisActionCreators.changeUpis(this.state.updatedUpisForChosenStudent);
         this.handleToggle();
     },
 
     _onUpdatedDate: function (updatedDate) {
-        console.log("Updated Godina Studija: " + JSON.stringify(updatedDate));
-        updatedUpisForChosenStudent.datum_upisa = updatedDate;
-        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+        this.state.updatedUpisForChosenStudent.datum_upisa = updatedDate;
     },
 
     _onUpdatedGodinaStudija: function (updatedGodinaStudija) {
-        console.log("Updated Godina Studija: " + JSON.stringify(updatedGodinaStudija));
-        updatedUpisForChosenStudent.godinaStudija = updatedGodinaStudija;
-        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+        this.state.updatedUpisForChosenStudent.godinaStudija = updatedGodinaStudija;
     },
 
     _onUpdatedNacinFinansiranja: function (updatedNacinFinansiranja) {
-        console.log("Updated Nacin Finansiranja: " + JSON.stringify(updatedNacinFinansiranja));
-        updatedUpisForChosenStudent.nacinFinansiranja = updatedNacinFinansiranja;
-        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+        this.state.updatedUpisForChosenStudent.nacinFinansiranja = updatedNacinFinansiranja;
     },
 
     _onUpdatedSkolskaGodina: function (updatedSkolskaGodina) {
-        console.log("Updated Skolska Godina: " + JSON.stringify(updatedSkolskaGodina));
-        updatedUpisForChosenStudent.skolskaGodina = updatedSkolskaGodina;
-        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+        this.state.updatedUpisForChosenStudent.skolskaGodina = updatedSkolskaGodina;
     },
 
     _onUpdatedStudijskiProgram: function (updatedStudijskiProgram) {
-        console.log("Updated Studijski Program: " + JSON.stringify(updatedStudijskiProgram));
-        updatedUpisForChosenStudent.studijskiProgram = updatedStudijskiProgram;
-        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+        this.state.updatedUpisForChosenStudent.studijskiProgram = updatedStudijskiProgram;
     },
 
     handleToggle: function () {

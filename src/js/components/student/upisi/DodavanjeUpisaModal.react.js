@@ -15,6 +15,9 @@ var ReactBootstrap = require('react-bootstrap'),
 var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
 var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react.js');
 var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
+var UpisActionCreators = require('../../../actions/UpisActionCreators');
+var UpisStore = require('../../../stores/UpisStore');
+var UpisUtils = require('../../../utils/UpisUtils');
 
 /**
  * ******************************
@@ -22,16 +25,53 @@ var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
  */
 var DodavanjeUpisaModal = React.createClass({
 
+    getInitialState: function () {
+        return {
+            newUpis: UpisUtils.convertRawUpis(UpisStore.getPoslednjiUpis()) //because js is pass by reference
+        };
+    },
+
+    componentDidMount: function () {
+        this.state.newUpis.datum_upisa = this.getFormatedDate(new Date());
+    },
+
+
+    _onDodaj: function () {
+        console.log("Dodat upis " + JSON.stringify(this.state.newUpis));
+        UpisActionCreators.makeUpis(this.state.newUpis);
+        this.props.onRequestHide();
+    },
+
+    _onUpdatedDate: function (updatedDate) {
+        this.state.newUpis.datum_upisa = updatedDate;
+    },
+
+    _onUpdatedGodinaStudija: function (updatedGodinaStudija) {
+        this.state.newUpis.godinaStudija = updatedGodinaStudija;
+    },
+
+    _onUpdatedNacinFinansiranja: function (updatedNacinFinansiranja) {
+        this.state.newUpis.nacinFinansiranja = updatedNacinFinansiranja;
+    },
+
+    _onUpdatedSkolskaGodina: function (updatedSkolskaGodina) {
+        this.state.newUpis.skolskaGodina = updatedSkolskaGodina;
+    },
+
+    _onUpdatedStudijskiProgram: function (updatedStudijskiProgram) {
+        this.state.newUpis.studijskiProgram = updatedStudijskiProgram;
+    },
+
     render: function () {
         return (
             <Modal {...this.props} bsStyle='primary' title='Dodavanje Upisa' animation={true}>
                 <div className='modal-body'>
                     <form className='form-horizontal'>
-                        <LabelAndDateTimePicker label='Datum upisa'/>
-                        <LabelAndComboBox data={this.props.godineStudija} label='Godina studija'/>
-                        <LabelAndComboBox data={this.props.naciniFinansiranja} label='Nacin finansiranja'/>
-                        <LabelAndComboBox data={this.props.skolskeGodine} label='Skolska godina'/>
-                        <LabelAndComboBox data={this.props.studijskiProgrami} label='Studijski program'/>
+                        <LabelAndDateTimePicker label='Datum upisa' defaultDate={new Date(this.state.newUpis.datum_upisa)} onUserInput={this._onUpdatedDate}/>
+                        <LabelAndComboBox data={this.props.godineStudija} label='Godina studija' defaultValueId={this.state.newUpis.godinaStudija.id} onUserInput={this._onUpdatedGodinaStudija}/>
+                        <LabelAndComboBox data={this.props.naciniFinansiranja} label='Nacin finansiranja' defaultValueId={this.state.newUpis.nacinFinansiranja.id} onUserInput={this._onUpdatedNacinFinansiranja}/>
+                        <LabelAndComboBox data={this.props.skolskeGodine} label='Skolska godina' defaultValueId={this.state.newUpis.skolskaGodina.id} onUserInput={this._onUpdatedSkolskaGodina}/>
+                        <LabelAndComboBox data={this.props.studijskiProgrami} label='Studijski program' defaultValueId={this.state.newUpis.studijskiProgram.id} onUserInput={this._onUpdatedStudijskiProgram}/>
                     </form>
                 </div>
                 <div className='modal-footer'>
@@ -49,10 +89,10 @@ var DodavanjeUpisaModal = React.createClass({
 
     },
 
-    _onDodaj: function () {
-        console.log("Dodat upis: ");
-        //this.handleToggle();
+    getFormatedDate: function (rawdate) {
+        return rawdate.getFullYear() + '-' + rawdate.getMonth() + '-' + rawdate.getDate();
     }
+
 });
 
 module.exports = DodavanjeUpisaModal;
