@@ -50,7 +50,7 @@ var TopStudentForm = React.createClass({
                                             <input type='text' value='2006' className='narrowInputText  form-control' disabled/>
                                         </Col>
                                         <Col md={6}>
-                                            <input type='text' placeholder='No' className='narrowInputText  form-control' disabled/>
+                                            <input type='text' placeholder='No' className='narrowInputText  form-control' disabled value={poslednjiUpis ? poslednjiUpis.studijskiProgram.skraceni_naziv : ''}/>
                                         </Col>
                                     </Row>
                                 </Input>

@@ -13,8 +13,19 @@ var ReactWidgets = require('react-widgets'),
 /**
  * ******************************
  *   *** Combined Label and custom DateTime Component ***
+ *
+ *    *  @param {number} defaultDate - js Date object
  */
 var LabelAndDateTimePicker = React.createClass({
+
+    getInitialState: function () {
+        return {
+            value: this.props.defaultDate ?
+                this.props.defaultDate
+                :
+                new Date() // show todays date if defaultDate is not passed to component
+        };
+    },
 
     render: function () {
         var labelText = this.props.label;
@@ -28,12 +39,31 @@ var LabelAndDateTimePicker = React.createClass({
                         </p>
                     </Col>
                     <Col md={9}>
-                        <DateTimePicker time={false} defaultValue={new Date()} />
+                        <DateTimePicker format={"yyyy-MM-dd"} time={false} defaultValue={this.state.value} onSelect={this._onSelect} />
                     </Col>
                 </Row>
             </span>
         );
+    },
+
+    _onSelect: function (value) {
+        console.log("Selected date: " + JSON.stringify(value) + ' and formated: ' + this.getFormatedDate(value));
+        this.setState({
+            value: value
+        });
+
+        if (this.props.onUserInput) {
+            this.props.onUserInput(this.getFormatedDate(value));
+        } else {
+            console.log("onUserInput not defined");
+        }
+    },
+
+    getFormatedDate: function (rawdate) {
+        return rawdate.getFullYear() + '-' + rawdate.getMonth() + '-' + rawdate.getDate();
     }
+
 });
+
 
 module.exports = LabelAndDateTimePicker;

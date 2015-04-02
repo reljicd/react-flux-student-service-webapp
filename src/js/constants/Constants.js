@@ -8,6 +8,10 @@ module.exports = {
 
     ActionTypes: keyMirror({
         CHOOSE_STUDENT: null,
+        MAKE_UPIS: null,
+        CHANGE_UPIS: null,
+        MAKE_REZULTAT_ISPITA: null,
+        CHANGE_REZULTAT_ISPITA: null,
         RECEIVE_STUDENTS: null,
         RECEIVE_RAW_STUDENTS: null,
         RECEIVE_RAW_PREDMETS: null,

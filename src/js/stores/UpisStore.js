@@ -16,6 +16,8 @@ var _upiss = {};
 var _upisiForChosenStudent = {};
 var _poslednjiUpis;
 
+var _upisIdCounter = 100; //helper var for making new ids
+
 function _addUpiss(rawUpiss) {
     rawUpiss.forEach(function (message) {
         if (!_upiss[message.id]) {
@@ -24,6 +26,18 @@ function _addUpiss(rawUpiss) {
             );
         }
     });
+    _addUpisiForChosenStudent();
+}
+
+function _makeNewUpis(newUpis) {
+    _upiss[_upisIdCounter] = newUpis;
+    _upisIdCounter++;
+    _addUpisiForChosenStudent();
+}
+
+function _changeUpis(updatedUpis) {
+    _upiss[updatedUpis.id] = updatedUpis;
+    _addUpisiForChosenStudent();
 }
 
 function _addUpisiForChosenStudent() {
@@ -51,9 +65,9 @@ var upisStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function () {
         this.emit(CHANGE_EVENT);
-        // console.log('Loaded New Upiss: ' + JSON.stringify(this.getAll()));
-        //console.log('UpisiForChosenStudent: ' + JSON.stringify(this.getUpisiForChosenStudent()));
-        //console.log('Loaded New PoslednjiUpis: ' + JSON.stringify(this.getPoslednjiUpis()));
+       // console.log('Loaded New Upiss: ' + JSON.stringify(this.getAll()));
+        console.log('UpisiForChosenStudent: ' + JSON.stringify(this.getUpisiForChosenStudent()));
+        console.log('Loaded New PoslednjiUpis: ' + JSON.stringify(this.getPoslednjiUpis()));
     },
 
     /**
@@ -99,7 +113,6 @@ upisStore.dispatchToken = AppDispatcher.register(function (action) {
 
         case ActionTypes.RECEIVE_RAW_UPISS:
             _addUpiss(action.rawUpiss);
-            _addUpisiForChosenStudent();
             upisStore.emitChange();
             break;
 
@@ -108,6 +121,16 @@ upisStore.dispatchToken = AppDispatcher.register(function (action) {
             // wait for StudentStore to do its thing first
             AppDispatcher.waitFor([StudentStore.dispatchToken]);
             _addUpisiForChosenStudent();
+            upisStore.emitChange();
+            break;
+
+        case ActionTypes.MAKE_UPIS:
+            _makeNewUpis(action.newUpis);
+            upisStore.emitChange();
+            break;
+
+        case ActionTypes.CHANGE_UPIS:
+            _changeUpis(action.updatedUpis);
             upisStore.emitChange();
             break;
 

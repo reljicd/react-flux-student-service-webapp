@@ -24,31 +24,21 @@ var DodavanjeUpisaModal = React.createClass({
 
     render: function () {
         return (
-            <Modal {...this.props} bsStyle='primary' title='Dodavanje polozenog ispita' animation={true}>
+            <Modal {...this.props} bsStyle='primary' title='Dodavanje Upisa' animation={true}>
                 <div className='modal-body'>
                     <form className='form-horizontal'>
-                        <Input type='text' label='Predmet' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndComboBox label='Rok'/>
-                        <LabelAndComboBox label='Ocena'/>
-                        <LabelAndComboBox label='Nastavnik potpisao'/>
-                        <Input type='text' label='ESPB' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Poena' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndDateTimePicker label='Datum prijave'/>
-                        <LabelAndDateTimePicker label='Datum polaganja'/>
-                        <LabelAndComboBox label='Tip rezultata ispita'/>
-                        <LabelAndComboBox label='Tip prijave'/>
-                        <Input type='text' label='Broj prijava' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Nastavna grupa' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='textarea' label='Dodatne informacije' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Komentar' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-
+                        <LabelAndDateTimePicker label='Datum upisa'/>
+                        <LabelAndComboBox data={this.props.godineStudija} label='Godina studija'/>
+                        <LabelAndComboBox data={this.props.naciniFinansiranja} label='Nacin finansiranja'/>
+                        <LabelAndComboBox data={this.props.skolskeGodine} label='Skolska godina'/>
+                        <LabelAndComboBox data={this.props.studijskiProgrami} label='Studijski program'/>
                     </form>
                 </div>
                 <div className='modal-footer'>
                     <ButtonToolbar>
-                        <Button bsStyle='primary' onClick={this.props.onRequestHide}>
+                        <Button bsStyle='primary' onClick={this._onDodaj}>
                             <Glyphicon glyph='ok' />
-                            Azuriraj</Button>
+                            Dodaj</Button>
                         <Button bsStyle='primary' onClick={this.props.onRequestHide}>
                             <Glyphicon glyph='remove' />
                             Izlaz</Button>
@@ -56,6 +46,12 @@ var DodavanjeUpisaModal = React.createClass({
                 </div>
             </Modal>
         );
+
+    },
+
+    _onDodaj: function () {
+        console.log("Dodat upis: ");
+        //this.handleToggle();
     }
 });
 

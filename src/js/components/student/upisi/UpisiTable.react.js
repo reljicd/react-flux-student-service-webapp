@@ -9,10 +9,12 @@ var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
     Glyphicon = ReactBootstrap.Glyphicon,
     Button = ReactBootstrap.Button,
+    ButtonToolbar = ReactBootstrap.ButtonToolbar,
     OverlayMixin = ReactBootstrap.OverlayMixin;
 var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
 var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react.js');
 var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
+var UpisActionCreators = require('../../../actions/UpisActionCreators');
 
 /**
  * ******************************
@@ -29,7 +31,12 @@ var UpisiTable = React.createClass({
         var rows = [];
         for (var upisiForChosenStudentId in upisiForChosenStudent) {
             rows.push(
-                <UpisiTableRow upisForChosenStudent = {upisiForChosenStudent[upisiForChosenStudentId]}/>
+                <UpisiTableRow upisForChosenStudent = {upisiForChosenStudent[upisiForChosenStudentId]}
+                    skolskeGodine={this.props.skolskeGodine}
+                    naciniFinansiranja={this.props.naciniFinansiranja}
+                    godineStudija={this.props.godineStudija}
+                    studijskiProgrami={this.props.studijskiProgrami}
+                />
             )
         }
 
@@ -55,6 +62,9 @@ var UpisiTable = React.createClass({
         );
     }
 });
+
+//helper variable, to store temporary modal values for changing *Upis*
+var updatedUpisForChosenStudent = {};
 
 var UpisiTableRow = React.createClass({
 
@@ -88,8 +98,45 @@ var UpisiTableRow = React.createClass({
     },
 
     _onClick: function () {
+        updatedUpisForChosenStudent = this.props.upisForChosenStudent;
         console.log("Selected row: " + this.props.upisForChosenStudent.id);
         this.handleToggle();
+    },
+
+    _onAzuriraj: function () {
+        console.log("Azuriran upis: " + this.props.upisForChosenStudent.id);
+        UpisActionCreators.changeUpis(updatedUpisForChosenStudent);
+        this.handleToggle();
+    },
+
+    _onUpdatedDate: function (updatedDate) {
+        console.log("Updated Godina Studija: " + JSON.stringify(updatedDate));
+        updatedUpisForChosenStudent.datum_upisa = updatedDate;
+        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+    },
+
+    _onUpdatedGodinaStudija: function (updatedGodinaStudija) {
+        console.log("Updated Godina Studija: " + JSON.stringify(updatedGodinaStudija));
+        updatedUpisForChosenStudent.godinaStudija = updatedGodinaStudija;
+        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+    },
+
+    _onUpdatedNacinFinansiranja: function (updatedNacinFinansiranja) {
+        console.log("Updated Nacin Finansiranja: " + JSON.stringify(updatedNacinFinansiranja));
+        updatedUpisForChosenStudent.nacinFinansiranja = updatedNacinFinansiranja;
+        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+    },
+
+    _onUpdatedSkolskaGodina: function (updatedSkolskaGodina) {
+        console.log("Updated Skolska Godina: " + JSON.stringify(updatedSkolskaGodina));
+        updatedUpisForChosenStudent.skolskaGodina = updatedSkolskaGodina;
+        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
+    },
+
+    _onUpdatedStudijskiProgram: function (updatedStudijskiProgram) {
+        console.log("Updated Studijski Program: " + JSON.stringify(updatedStudijskiProgram));
+        updatedUpisForChosenStudent.studijskiProgram = updatedStudijskiProgram;
+        console.log("Updated Upis For Chosen Student: " + JSON.stringify(updatedUpisForChosenStudent));
     },
 
     handleToggle: function () {
@@ -101,36 +148,34 @@ var UpisiTableRow = React.createClass({
 // This is called by the `OverlayMixin` when this component
 // is mounted or updated and the return value is appended to the body.
     renderOverlay: function () {
+
         if (!this.state.isModalOpen) {
             return <span/>;
         }
 
         return (
             <Modal bsStyle='primary' title={'Menjanje Upisa sa id: ' + this.props.upisForChosenStudent.id} onRequestHide={this.handleToggle}>
-                <div className='modal-body'>
-                    <form className='form-horizontal'>
-                        <Input type='text' label='Predmet' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndComboBox label='Rok'/>
-                        <LabelAndComboBox label='Ocena'/>
-                        <LabelAndComboBox label='Nastavnik potpisao'/>
-                        <Input type='text' label='ESPB' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Poena' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndDateTimePicker label='Datum prijave'/>
-                        <LabelAndDateTimePicker label='Datum polaganja'/>
-                        <LabelAndComboBox label='Tip rezultata ispita'/>
-                        <LabelAndComboBox label='Tip prijave'/>
-                        <Input type='text' label='Broj prijava' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Nastavna grupa' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='textarea' label='Dodatne informacije' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Komentar' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
+                <form className='form-horizontal'>
+                    <div className='modal-body'>
 
-                    </form>
-                </div>
-                <div className='modal-footer'>
-                    <Button onClick={this.handleToggle} bsStyle='primary'>
-                        <Glyphicon glyph='remove'/>
-                        Izlaz</Button>
-                </div>
+                        <LabelAndDateTimePicker label='Datum upisa' defaultDate={new Date(this.props.upisForChosenStudent.datum_upisa)} onUserInput={this._onUpdatedDate}/>
+                        <LabelAndComboBox data={this.props.godineStudija} label='Godina studija' defaultValueId={this.props.upisForChosenStudent.godinaStudija.id} onUserInput={this._onUpdatedGodinaStudija}/>
+                        <LabelAndComboBox data={this.props.naciniFinansiranja} label='Nacin finansiranja' defaultValueId={this.props.upisForChosenStudent.nacinFinansiranja.id} onUserInput={this._onUpdatedNacinFinansiranja}/>
+                        <LabelAndComboBox data={this.props.skolskeGodine} label='Skolska godina' defaultValueId={this.props.upisForChosenStudent.skolskaGodina.id} onUserInput={this._onUpdatedSkolskaGodina}/>
+                        <LabelAndComboBox data={this.props.studijskiProgrami} label='Studijski program' defaultValueId={this.props.upisForChosenStudent.studijskiProgram.id} onUserInput={this._onUpdatedStudijskiProgram}/>
+
+                    </div>
+                    <div className='modal-footer'>
+                        <ButtonToolbar>
+                            <Button bsStyle='primary' onClick={this._onAzuriraj}>
+                                <Glyphicon glyph='ok' />
+                                Azuriraj</Button>
+                            <Button onClick={this.handleToggle} bsStyle='primary'>
+                                <Glyphicon glyph='remove'/>
+                                Izlaz</Button>
+                        </ButtonToolbar>
+                    </div>
+                </form>
             </Modal>
         );
     }

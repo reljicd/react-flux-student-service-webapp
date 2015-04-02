@@ -18,6 +18,10 @@ var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText
 var DodavanjeUpisaModal = require('./DodavanjeUpisaModal.react.js');
 var UpisiTable = require('./UpisiTable.react.js');
 var UpisStore = require('../../../stores/UpisStore');
+var SkolskaGodinaStore = require('../../../stores/SkolskaGodinaStore');
+var NacinFinansiranjaStore = require('../../../stores/NacinFinansiranjaStore');
+var GodinaStudijaStore = require('../../../stores/GodinaStudijaStore');
+var StudijskiProgramStore = require('../../../stores/StudijskiProgramStore');
 
 /**
  * ******************************
@@ -25,22 +29,34 @@ var UpisStore = require('../../../stores/UpisStore');
  */
 function getStateFromStores() {
     return {
-        upisiForChosenStudent: UpisStore.getUpisiForChosenStudent()
+        upisiForChosenStudent: UpisStore.getUpisiForChosenStudent(),
+        skolskeGodine: SkolskaGodinaStore.getAll(),
+        naciniFinansiranja: NacinFinansiranjaStore.getAll(),
+        godineStudija: GodinaStudijaStore.getAll(),
+        studijskiProgrami: StudijskiProgramStore.getAll()
     };
 }
 
 var Upisi = React.createClass({
 
-    getInitialState: function() {
+    getInitialState: function () {
         return getStateFromStores();
     },
 
-    componentDidMount: function() {
+    componentDidMount: function () {
         UpisStore.addChangeListener(this._onChange);
+        SkolskaGodinaStore.addChangeListener(this._onChange);
+        NacinFinansiranjaStore.addChangeListener(this._onChange);
+        GodinaStudijaStore.addChangeListener(this._onChange);
+        StudijskiProgramStore.addChangeListener(this._onChange);
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount: function () {
         UpisStore.removeChangeListener(this._onChange);
+        SkolskaGodinaStore.removeChangeListener(this._onChange);
+        NacinFinansiranjaStore.removeChangeListener(this._onChange);
+        GodinaStudijaStore.removeChangeListener(this._onChange);
+        StudijskiProgramStore.removeChangeListener(this._onChange);
     },
 
     render: function () {
@@ -53,7 +69,12 @@ var Upisi = React.createClass({
                     </Nav>
                     <ButtonToolbar>
                         <ButtonGroup>
-                            <ModalTrigger modal={<DodavanjeUpisaModal />}>
+                            <ModalTrigger modal={<DodavanjeUpisaModal skolskeGodine={this.state.skolskeGodine}
+                                naciniFinansiranja={this.state.naciniFinansiranja}
+                                godineStudija={this.state.godineStudija}
+                                studijskiProgrami={this.state.studijskiProgrami}
+                            />}
+                            >
                                 <Button>
                                     <b>Upis godine</b>
                                 </Button>
@@ -69,7 +90,12 @@ var Upisi = React.createClass({
                             </Button>
                         </ButtonGroup>
                     </ButtonToolbar>
-                    <UpisiTable upisiForChosenStudent={this.state.upisiForChosenStudent}/>
+                    <UpisiTable upisiForChosenStudent={this.state.upisiForChosenStudent}
+                        skolskeGodine={this.state.skolskeGodine}
+                        naciniFinansiranja={this.state.naciniFinansiranja}
+                        godineStudija={this.state.godineStudija}
+                        studijskiProgrami={this.state.studijskiProgrami}
+                    />
                 </Panel>
                 < Row >
                     <Col md={4}>
@@ -78,7 +104,7 @@ var Upisi = React.createClass({
                     <Col md={2} xsOffset={6}>
                         <Button bsStyle='primary'>
                             <Glyphicon glyph='remove' />
-                        Izlaz</Button>
+                            Izlaz</Button>
                     </Col>
                 </ Row >
             </span>

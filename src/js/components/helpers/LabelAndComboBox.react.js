@@ -15,12 +15,34 @@ var ReactWidgets = require('react-widgets'),
  *   *** Autocomplete control ***
  *
  *   Combined Label and custom Combobox Component
+ *
+ *  @param {object} rawData - raw data object to show in combobox; should be converted to array;
+ *                            every property object of rawData object should contain properties 'id' and 'dugi_naziv'
+ *  @param {number} defaultValueId - id of default value in *rawData*
  */
 var LabelAndComboBox = React.createClass({
 
+    getInitialState: function () {
+        return {
+            value: this.props.defaultValueId ?
+                this.props.data[this.props.defaultValueId]
+                :
+                '' // show nothing in combobox if defaultValueId is not passed to component
+        };
+    },
+
     render: function () {
 
-        var colors = ['orange', 'red', 'blue', 'purple'];
+        var rawData = this.props.data;
+
+        var data = [];
+
+        // make an array of rawData (object)
+        for (var rawDataId in rawData) {
+            data.push(
+                rawData[rawDataId]
+            );
+        }
 
         var labelText = this.props.label;
 
@@ -33,11 +55,24 @@ var LabelAndComboBox = React.createClass({
                         </p>
                     </Col>
                     <Col md={9}>
-                        <Combobox defaultValue={"orange"} data={colors}/>
+                        <Combobox data={data} valueField='id' textField='dugi_naziv' defaultValue={this.state.value} onSelect={this._onSelect} />
                     </Col>
                 </Row>
             </span>
         );
+    },
+
+    _onSelect: function (value) {
+        console.log("Selected: " + JSON.stringify(value));
+        this.setState({
+            value: value
+        });
+
+        if (this.props.onUserInput) {
+            this.props.onUserInput(value);
+        } else {
+            console.log("onUserInput not defined");
+        }
     }
 });
 
