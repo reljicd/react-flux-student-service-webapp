@@ -12,8 +12,10 @@ var ReactBootstrap = require('react-bootstrap'),
     ButtonToolbar = ReactBootstrap.ButtonToolbar,
     ButtonGroup = ReactBootstrap.ButtonGroup,
     Glyphicon = ReactBootstrap.Glyphicon,
+    ModalTrigger = ReactBootstrap.ModalTrigger,
     Panel = ReactBootstrap.Panel;
 var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
+var DodavanjeUpisaModal = require('./DodavanjeUpisaModal.react.js');
 var UpisiTable = require('./UpisiTable.react.js');
 var UpisStore = require('../../../stores/UpisStore');
 
@@ -51,9 +53,11 @@ var Upisi = React.createClass({
                     </Nav>
                     <ButtonToolbar>
                         <ButtonGroup>
-                            <Button>
-                                <b>Upis godine</b>
-                            </Button>
+                            <ModalTrigger modal={<DodavanjeUpisaModal />}>
+                                <Button>
+                                    <b>Upis godine</b>
+                                </Button>
+                            </ModalTrigger>
                             <Button>
                                 <b>Obnova godine</b>
                             </Button>
