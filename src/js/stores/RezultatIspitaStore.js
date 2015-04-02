@@ -15,6 +15,9 @@ var CHANGE_EVENT = 'change';
 var _rezultatIspitas = {};
 var _rezultatiIspitaForChosenStudent = {};
 
+
+var _rezultatIspitaIdCounter = 1000; //helper var for making new ids
+
 function _addRezultatIspitas(rawRezultatIspitas) {
     rawRezultatIspitas.forEach(function (message) {
         if (!_rezultatIspitas[message.id]) {
@@ -23,6 +26,19 @@ function _addRezultatIspitas(rawRezultatIspitas) {
             );
         }
     });
+    _addRezultatiIspitaForChosenStudent();
+}
+
+function _makeNewRezultatIspita(newRezultatIspita) {
+    newRezultatIspita.id = _rezultatIspitaIdCounter;
+    _rezultatIspitas[_rezultatIspitaIdCounter] = newRezultatIspita;
+    _rezultatIspitaIdCounter++;
+    _addRezultatiIspitaForChosenStudent();
+}
+
+function _changeRezultatIspita(updatedRezultatIspita) {
+    _rezultatIspitas[updatedRezultatIspita.id] = updatedRezultatIspita;
+    _addRezultatiIspitaForChosenStudent();
 }
 
 function _addRezultatiIspitaForChosenStudent() {
@@ -82,7 +98,6 @@ rezultatIspitaStore.dispatchToken = AppDispatcher.register(function (action) {
 
         case ActionTypes.RECEIVE_RAW_REZULTATISPITAS:
             _addRezultatIspitas(action.rawRezultatIspitas);
-            _addRezultatiIspitaForChosenStudent()
             rezultatIspitaStore.emitChange();
             break;
 
@@ -91,6 +106,16 @@ rezultatIspitaStore.dispatchToken = AppDispatcher.register(function (action) {
             // wait for StudentStore to do its thing first
             AppDispatcher.waitFor([StudentStore.dispatchToken]);
             _addRezultatiIspitaForChosenStudent()
+            rezultatIspitaStore.emitChange();
+            break;
+
+        case ActionTypes.MAKE_REZULTAT_ISPITA:
+            _makeNewRezultatIspita(action.newRezultatispita);
+            rezultatIspitaStore.emitChange();
+            break;
+
+        case ActionTypes.CHANGE_REZULTAT_ISPITA:
+            _changeRezultatIspita(action.updatedRezultatIspita);
             rezultatIspitaStore.emitChange();
             break;
 

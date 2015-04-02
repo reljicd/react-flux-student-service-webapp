@@ -9,10 +9,13 @@ var ReactBootstrap = require('react-bootstrap'),
     Input = ReactBootstrap.Input,
     Glyphicon = ReactBootstrap.Glyphicon,
     Button = ReactBootstrap.Button,
+    ButtonToolbar = ReactBootstrap.ButtonToolbar,
     OverlayMixin = ReactBootstrap.OverlayMixin;
 var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
 var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react.js');
 var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
+var RezultatIspitaActionCreators = require('../../../actions/RezultatIspitaActionCreators');
+var RezultatIspitaUtils = require('../../../utils/RezultatIspitaUtils');
 
 /**
  * ******************************
@@ -30,7 +33,11 @@ var RezultatiIspitaTable = React.createClass({
         var counter = 1;
         for (var rezultatiIspitaForChosenStudentId in rezultatiIspitaForChosenStudent) {
             rows.push(
-                <RezultatiIspitaTableRow rezultatIspitaForChosenStudent = {rezultatiIspitaForChosenStudent[rezultatiIspitaForChosenStudentId]} rowNumber = {counter} />
+                <RezultatiIspitaTableRow rezultatIspitaForChosenStudent = {rezultatiIspitaForChosenStudent[rezultatiIspitaForChosenStudentId]} rowNumber = {counter}
+                    godineStudija={this.props.godineStudija}
+                    predmeti={this.props.predmeti}
+                    rokovi={this.props.rokovi}
+                />
             );
             counter++;
         }
@@ -64,7 +71,8 @@ var RezultatiIspitaTableRow = React.createClass({
 
     getInitialState: function () {
         return {
-            isModalOpen: false
+            isModalOpen: false,
+            updatedRezultatIspitaForChosenStudent: RezultatIspitaUtils.convertRawRezultatIspita(this.props.rezultatIspitaForChosenStudent)
         };
     },
 
@@ -93,6 +101,28 @@ var RezultatiIspitaTableRow = React.createClass({
         this.handleToggle();
     },
 
+    _onAzuriraj: function () {
+        console.log("Azuriran rezultat ispita: " + this.props.rezultatIspitaForChosenStudent.id);
+        RezultatIspitaActionCreators.changeRezultatIspita(this.state.updatedRezultatIspitaForChosenStudent);
+        this.handleToggle();
+    },
+
+    _onUpdatedDate: function (updatedDate) {
+        this.state.updatedRezultatIspitaForChosenStudent.datum_polaganja = updatedDate;
+    },
+
+    _onUpdatedGodinaStudija: function (updatedGodinaStudija) {
+        this.state.updatedRezultatIspitaForChosenStudent.godinaStudija = updatedGodinaStudija;
+    },
+
+    _onUpdatedPredmet: function (updatedPredmet) {
+        this.state.updatedRezultatIspitaForChosenStudent.predmet = updatedPredmet;
+    },
+
+    _onUpdatedRok: function (updatedRok) {
+        this.state.updatedRezultatIspitaForChosenStudent.rok = updatedRok;
+    },
+
     handleToggle: function () {
         this.setState({
             isModalOpen: !this.state.isModalOpen
@@ -107,30 +137,24 @@ var RezultatiIspitaTableRow = React.createClass({
         }
 
         return (
-            <Modal bsStyle='primary' title={'Menjanje izabranog ispita ' + this.props.rezultatIspitaForChosenStudent.predmet.dugi_naziv} onRequestHide={this.handleToggle}>
+            <Modal bsStyle='primary' title={'Menjanje ispita ' + this.props.rezultatIspitaForChosenStudent.predmet.dugi_naziv} onRequestHide={this.handleToggle}>
                 <div className='modal-body'>
                     <form className='form-horizontal'>
-                        <Input type='text' label='Predmet' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndComboBox label='Rok'/>
-                        <LabelAndComboBox label='Ocena'/>
-                        <LabelAndComboBox label='Nastavnik potpisao'/>
-                        <Input type='text' label='ESPB' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Poena' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndDateTimePicker label='Datum prijave'/>
-                        <LabelAndDateTimePicker label='Datum polaganja'/>
-                        <LabelAndComboBox label='Tip rezultata ispita'/>
-                        <LabelAndComboBox label='Tip prijave'/>
-                        <Input type='text' label='Broj prijava' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Nastavna grupa' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='textarea' label='Dodatne informacije' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Komentar' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-
+                        <LabelAndDateTimePicker label='Datum polaganja' defaultDate={new Date(this.props.rezultatIspitaForChosenStudent.datum_polaganja)} onUserInput={this._onUpdatedDate}/>
+                        <LabelAndComboBox data={this.props.godineStudija} label='Godina studija' defaultValueId={this.props.rezultatIspitaForChosenStudent.godinaStudija.id} onUserInput={this._onUpdatedGodinaStudija}/>
+                        <LabelAndComboBox data={this.props.predmeti} label='Predmet' defaultValueId={this.props.rezultatIspitaForChosenStudent.predmet.id} onUserInput={this._onUpdatedPredmet}/>
+                        <LabelAndComboBox data={this.props.rokovi} label='Rok' defaultValueId={this.props.rezultatIspitaForChosenStudent.rok.id} onUserInput={this._onUpdatedRok}/>
                     </form>
                 </div>
                 <div className='modal-footer'>
-                    <Button onClick={this.handleToggle} bsStyle='primary'>
-                        <Glyphicon glyph='remove'/>
+                    <ButtonToolbar>
+                        <Button bsStyle='primary' onClick={this._onAzuriraj}>
+                            <Glyphicon glyph='ok' />
+                        Azuriraj</Button>
+                        <Button onClick={this.handleToggle} bsStyle='primary'>
+                            <Glyphicon glyph='remove'/>
                         Izlaz</Button>
+                    </ButtonToolbar>
                 </div>
             </Modal>
         );

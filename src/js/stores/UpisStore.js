@@ -16,7 +16,7 @@ var _upiss = {};
 var _upisiForChosenStudent = {};
 var _poslednjiUpis;
 
-var _upisIdCounter = 100; //helper var for making new ids
+var _upisIdCounter = 1000; //helper var for making new ids
 
 function _addUpiss(rawUpiss) {
     rawUpiss.forEach(function (message) {

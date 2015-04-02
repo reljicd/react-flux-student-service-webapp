@@ -17,22 +17,33 @@ var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react
 var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
 var UpisActionCreators = require('../../../actions/UpisActionCreators');
 var UpisStore = require('../../../stores/UpisStore');
+var StudentStore = require('../../../stores/StudentStore');
 var UpisUtils = require('../../../utils/UpisUtils');
 
 /**
  * ******************************
- *   *** Dodavanje Polozenog Ispita Modal of Rezultati Ispita section of the Student Page ***
+ *   *** Dodavanje Upisa Modal of Rezultati Ispita section of the Student Page ***
  */
 var DodavanjeUpisaModal = React.createClass({
 
     getInitialState: function () {
         return {
-            newUpis: UpisUtils.convertRawUpis(UpisStore.getPoslednjiUpis()) //because js is pass by reference
+            // Example *Upis*
+            newUpis: UpisUtils.convertRawUpis({
+                "datum_upisa": "2012-06-05",
+                "godinaStudija": {"dugi_naziv": "Prva godina", "id": 1, "skraceni_naziv": "prva"},
+                "id": 55,
+                "nacinFinansiranja": {"dugi_naziv": "Finansiranje iz budzeta", "id": 5, "skraceni_naziv": "Standardno"},
+                "skolskaGodina": {"dugi_naziv": "2012/2013", "id": 24, "skraceni_naziv": "12/13"},
+                "student": {"broj_indeksa": "2011/0213", "id": 35, "ime": "Milan", "prezime": "Dzeletovic"},
+                "studijskiProgram": {"dugi_naziv": "Softversko Inzenjerstvo", "id": 38, "skraceni_naziv": "SI"}
+            }) //because js is pass by reference
         };
     },
 
     componentDidMount: function () {
         this.state.newUpis.datum_upisa = this.getFormatedDate(new Date());
+        this.state.newUpis.student = StudentStore.get(StudentStore.getChosenStudentID());
     },
 
 

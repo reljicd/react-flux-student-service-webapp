@@ -18,6 +18,9 @@ var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText
 var RezultatiIspitaTable = require('./RezultatiIspitaTable.react.js');
 var DodavanjePolozenogIspitaModal = require('./DodavanjePolozenogIspitaModal.react.js');
 var RezultatIspitaStore = require('../../../stores/RezultatIspitaStore');
+var GodinaStudijaStore = require('../../../stores/GodinaStudijaStore');
+var PredmetStore = require('../../../stores/PredmetStore');
+var RokStore = require('../../../stores/RokStore');
 
 /**
  * ******************************
@@ -26,7 +29,10 @@ var RezultatIspitaStore = require('../../../stores/RezultatIspitaStore');
 
 function getStateFromStores() {
     return {
-        rezultatiIspitaForChosenStudent: RezultatIspitaStore.getRezultatiIspitaForChosenStudent()
+        rezultatiIspitaForChosenStudent: RezultatIspitaStore.getRezultatiIspitaForChosenStudent(),
+        godineStudija: GodinaStudijaStore.getAll(),
+        predmeti: PredmetStore.getAll(),
+        rokovi: RokStore.getAll()
     };
 }
 
@@ -38,10 +44,16 @@ var RezultatiIspita = React.createClass({
 
     componentDidMount: function () {
         RezultatIspitaStore.addChangeListener(this._onChange);
+        GodinaStudijaStore.addChangeListener(this._onChange);
+        PredmetStore.addChangeListener(this._onChange);
+        RokStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function () {
         RezultatIspitaStore.removeChangeListener(this._onChange);
+        GodinaStudijaStore.removeChangeListener(this._onChange);
+        PredmetStore.removeChangeListener(this._onChange);
+        RokStore.removeChangeListener(this._onChange);
     },
 
     render: function () {
@@ -61,14 +73,23 @@ var RezultatiIspita = React.createClass({
                             <Button>
                                 <Glyphicon glyph='search' />
                             </Button>
-                            <ModalTrigger modal={<DodavanjePolozenogIspitaModal />}>
+                            <ModalTrigger modal={<DodavanjePolozenogIspitaModal
+                                godineStudija={this.state.godineStudija}
+                                predmeti={this.state.predmeti}
+                                rokovi={this.state.rokovi}
+                            />}
+                            >
                                 <Button>
                                     <b>Dodavanje polozenog ispita</b>
                                 </Button>
                             </ModalTrigger>
                         </ButtonGroup>
                     </ButtonToolbar>
-                    <RezultatiIspitaTable rezultatiIspitaForChosenStudent={this.state.rezultatiIspitaForChosenStudent}/>
+                    <RezultatiIspitaTable rezultatiIspitaForChosenStudent={this.state.rezultatiIspitaForChosenStudent}
+                        godineStudija={this.state.godineStudija}
+                        predmeti={this.state.predmeti}
+                        rokovi={this.state.rokovi}
+                    />
                 </Panel>
                 < Row >
                     <Col md={4}>

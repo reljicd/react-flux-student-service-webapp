@@ -15,6 +15,10 @@ var ReactBootstrap = require('react-bootstrap'),
 var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText.react.js');
 var LabelAndDateTimePicker = require('../../helpers/LabelAndDateTimePicker.react.js');
 var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
+var RezultatIspitaActionCreators = require('../../../actions/RezultatIspitaActionCreators');
+var RezultatIspitaStore = require('../../../stores/RezultatIspitaStore');
+var StudentStore = require('../../../stores/StudentStore');
+var RezultatIspitaUtils = require('../../../utils/RezultatIspitaUtils');
 
 /**
  * ******************************
@@ -22,40 +26,77 @@ var LabelAndComboBox = require('../../helpers/LabelAndComboBox.react.js');
  */
 var DodavanjePolozenogIspitaModal = React.createClass({
 
+    getInitialState: function () {
+        return {
+            //Example *Rezultat*
+            newRezultatIspita: RezultatIspitaUtils.convertRawRezultatIspita({
+                "datum_polaganja": "2012-05-16",
+                "godinaStudija": {"dugi_naziv": "Cetvrta godina", "id": 4, "skraceni_naziv": "cetvrta"},
+                "id": 43,
+                "ocena": 10,
+                "predmet": {"dugi_naziv": "Sociologija", "espb": 2, "id": 11, "skraceni_naziv": "SI1S"},
+                "rok": {"dugi_naziv": "Jul - 2012/13", "id": 17, "skraceni_naziv": "jul12/13"},
+                "student": {"broj_indeksa": "2007/0120", "id": 27, "ime": "Stefan", "prezime": "Vukovic"}
+            }) //because js is pass by reference
+        };
+    },
+
+    componentDidMount: function () {
+        this.state.newRezultatIspita.datum_upisa = this.getFormatedDate(new Date());
+        this.state.newRezultatIspita.student = StudentStore.get(StudentStore.getChosenStudentID());
+    },
+
+
+    _onDodaj: function () {
+        console.log("Dodat rezultat ispita: " + JSON.stringify(this.state.newRezultatIspita));
+        RezultatIspitaActionCreators.makeRezultatispita(this.state.newRezultatIspita);
+        this.props.onRequestHide();
+    },
+
+    _onUpdatedDate: function (updatedDate) {
+        this.state.newRezultatIspita.datum_polaganja = updatedDate;
+    },
+
+    _onUpdatedGodinaStudija: function (updatedGodinaStudija) {
+        this.state.newRezultatIspita.godinaStudija = updatedGodinaStudija;
+    },
+
+    _onUpdatedPredmet: function (updatedPredmet) {
+        this.state.newRezultatIspita.predmet = updatedPredmet;
+    },
+
+    _onUpdatedRok: function (updatedRok) {
+        this.state.newRezultatIspita.rok = updatedRok;
+    },
+
     render: function () {
         return (
             <Modal {...this.props} bsStyle='primary' title='Dodavanje polozenog ispita' animation={true}>
                 <div className='modal-body'>
                     <form className='form-horizontal'>
-                        <Input type='text' label='Predmet' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndComboBox label='Rok'/>
-                        <LabelAndComboBox label='Ocena'/>
-                        <LabelAndComboBox label='Nastavnik potpisao'/>
-                        <Input type='text' label='ESPB' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Poena' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <LabelAndDateTimePicker label='Datum prijave'/>
-                        <LabelAndDateTimePicker label='Datum polaganja'/>
-                        <LabelAndComboBox label='Tip rezultata ispita'/>
-                        <LabelAndComboBox label='Tip prijave'/>
-                        <Input type='text' label='Broj prijava' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Nastavna grupa' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='textarea' label='Dodatne informacije' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-                        <Input type='text' label='Komentar' labelClassName='col-xs-3' wrapperClassName='col-xs-9' />
-
+                        <LabelAndDateTimePicker label='Datum polaganja' defaultDate={new Date()} onUserInput={this._onUpdatedDate}/>
+                        <LabelAndComboBox data={this.props.godineStudija} label='Godina studija' defaultValueId={this.state.newRezultatIspita.godinaStudija.id} onUserInput={this._onUpdatedGodinaStudija}/>
+                        <LabelAndComboBox data={this.props.predmeti} label='Predmet' defaultValueId={this.state.newRezultatIspita.predmet.id} onUserInput={this._onUpdatedPredmet}/>
+                        <LabelAndComboBox data={this.props.rokovi} label='Rok' defaultValueId={this.state.newRezultatIspita.rok.id} onUserInput={this._onUpdatedRok}/>
                     </form>
                 </div>
                 <div className='modal-footer'>
                     <ButtonToolbar>
-                        <Button bsStyle='primary' onClick={this.props.onRequestHide}>
+                        <Button bsStyle='primary' onClick={this._onDodaj}>
                             <Glyphicon glyph='ok' />
-                            Azuriraj</Button>
+                        Dodaj</Button>
                         <Button bsStyle='primary' onClick={this.props.onRequestHide}>
                             <Glyphicon glyph='remove' />
-                            Izlaz</Button>
+                        Izlaz</Button>
                     </ButtonToolbar>
                 </div>
             </Modal>
         );
+    },
+
+    getFormatedDate: function (rawdate) {
+        var month = rawdate.getMonth() + 1;
+        return rawdate.getFullYear() + '-' + month + '-' + rawdate.getDate();
     }
 });
 
