@@ -8,14 +8,6 @@ var TopStudentForm = require('./TopStudentForm.react.js');
 var CenterStackedNavTabs = require('./CenterStackedNavTabs.react.js');
 var StudentStore = require('../../stores/StudentStore');
 var UpisStore = require('../../stores/UpisStore');
-// TODO delete this entries, they are just for testing
-var PredmetStore = require('../../stores/PredmetStore');
-var GodinaStudijaStore = require('../../stores/GodinaStudijaStore');
-var RokStore = require('../../stores/RokStore');
-var NacinFinansiranjaStore = require('../../stores/NacinFinansiranjaStore');
-var SkolskaGodinaStore = require('../../stores/SkolskaGodinaStore');
-var StudijskiProgramStore = require('../../stores/StudijskiProgramStore');
-var RezultatIspitaStore = require('../../stores/RezultatIspitaStore');
 
 /**
  * ******************************

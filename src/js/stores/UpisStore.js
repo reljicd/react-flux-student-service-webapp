@@ -113,6 +113,9 @@ upisStore.dispatchToken = AppDispatcher.register(function (action) {
     switch (action.type) {
 
         case ActionTypes.RECEIVE_RAW_UPISS:
+            // Because this data depends on the *Student* data,
+            // wait for StudentStore to do its thing first
+            AppDispatcher.waitFor([StudentStore.dispatchToken]);
             _addUpiss(action.rawUpiss);
             upisStore.emitChange();
             break;
@@ -126,11 +129,17 @@ upisStore.dispatchToken = AppDispatcher.register(function (action) {
             break;
 
         case ActionTypes.MAKE_UPIS:
+            // Because this data depends on the *Student* data,
+            // wait for StudentStore to do its thing first
+            AppDispatcher.waitFor([StudentStore.dispatchToken]);
             _makeNewUpis(action.newUpis);
             upisStore.emitChange();
             break;
 
         case ActionTypes.CHANGE_UPIS:
+            // Because this data depends on the *Student* data,
+            // wait for StudentStore to do its thing first
+            AppDispatcher.waitFor([StudentStore.dispatchToken]);
             _changeUpis(action.updatedUpis);
             upisStore.emitChange();
             break;

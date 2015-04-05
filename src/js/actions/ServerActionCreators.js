@@ -1,11 +1,17 @@
 /**
  * Created by reljicd on 3/31/15.
+ *
+ *  *******************************
+ *   *** Action Creator for Server actions ***
+ *
  */
 
+// ****** Imports **********************************
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var Constants = require('../constants/Constants');
 
 var ActionTypes = Constants.ActionTypes;
+/*************************************************/
 
 module.exports = {
 
@@ -19,42 +25,48 @@ module.exports = {
     receiveAllPredmets: function (rawPredmets) {
         AppDispatcher.dispatch({
             type: ActionTypes.RECEIVE_RAW_PREDMETS,
-            rawPredmets: rawPredmets
+            rawPredmets: rawPredmets,
+            rawStaticData: rawPredmets
         });
     },
 
     receiveAllGodinaStudijas: function (rawGodinaStudijas) {
         AppDispatcher.dispatch({
             type: ActionTypes.RECEIVE_RAW_GODINASTUDIJAS,
-            rawGodinaStudijas: rawGodinaStudijas
+            rawGodinaStudijas: rawGodinaStudijas,
+            rawStaticData: rawGodinaStudijas
         });
     },
 
     receiveAllRoks: function (rawRoks) {
         AppDispatcher.dispatch({
             type: ActionTypes.RECEIVE_RAW_ROKS,
-            rawRoks: rawRoks
+            rawRoks: rawRoks,
+            rawStaticData: rawRoks
         });
     },
 
     receiveAllNacinFinansiranjas: function (rawNacinFinansiranjas) {
         AppDispatcher.dispatch({
             type: ActionTypes.RECEIVE_RAW_NACINFINANSIRANJAS,
-            rawNacinFinansiranjas: rawNacinFinansiranjas
+            rawNacinFinansiranjas: rawNacinFinansiranjas,
+            rawStaticData: rawNacinFinansiranjas
         });
     },
 
     receiveAllSkolskaGodinas: function (rawSkolskaGodinas) {
         AppDispatcher.dispatch({
             type: ActionTypes.RECEIVE_RAW_SKOLSKAGODINAS,
-            rawSkolskaGodinas: rawSkolskaGodinas
+            rawSkolskaGodinas: rawSkolskaGodinas,
+            rawStaticData: rawSkolskaGodinas
         });
     },
 
     receiveAllStudijskiPrograms: function (rawStudijskiPrograms) {
         AppDispatcher.dispatch({
             type: ActionTypes.RECEIVE_RAW_STUDIJSKIPROGRAMS,
-            rawStudijskiPrograms: rawStudijskiPrograms
+            rawStudijskiPrograms: rawStudijskiPrograms,
+            rawStaticData: rawStudijskiPrograms
         });
     },
 

@@ -26,19 +26,16 @@ function _addRezultatIspitas(rawRezultatIspitas) {
             );
         }
     });
-    _addRezultatiIspitaForChosenStudent();
 }
 
 function _makeNewRezultatIspita(newRezultatIspita) {
     newRezultatIspita.id = _rezultatIspitaIdCounter;
     _rezultatIspitas[_rezultatIspitaIdCounter] = newRezultatIspita;
     _rezultatIspitaIdCounter++;
-    _addRezultatiIspitaForChosenStudent();
 }
 
 function _changeRezultatIspita(updatedRezultatIspita) {
     _rezultatIspitas[updatedRezultatIspita.id] = updatedRezultatIspita;
-    _addRezultatiIspitaForChosenStudent();
 }
 
 function _addRezultatiIspitaForChosenStudent() {
@@ -98,6 +95,12 @@ rezultatIspitaStore.dispatchToken = AppDispatcher.register(function (action) {
 
         case ActionTypes.RECEIVE_RAW_REZULTATISPITAS:
             _addRezultatIspitas(action.rawRezultatIspitas);
+
+            // Because this data depends on the *Student* data,
+            // wait for StudentStore to do its thing first
+            AppDispatcher.waitFor([StudentStore.dispatchToken]);
+            _addRezultatiIspitaForChosenStudent();
+
             rezultatIspitaStore.emitChange();
             break;
 
@@ -106,16 +109,29 @@ rezultatIspitaStore.dispatchToken = AppDispatcher.register(function (action) {
             // wait for StudentStore to do its thing first
             AppDispatcher.waitFor([StudentStore.dispatchToken]);
             _addRezultatiIspitaForChosenStudent()
+
             rezultatIspitaStore.emitChange();
             break;
 
         case ActionTypes.MAKE_REZULTAT_ISPITA:
             _makeNewRezultatIspita(action.newRezultatispita);
+
+            // Because this data depends on the *Student* data,
+            // wait for StudentStore to do its thing first
+            AppDispatcher.waitFor([StudentStore.dispatchToken]);
+            _addRezultatiIspitaForChosenStudent();
+
             rezultatIspitaStore.emitChange();
             break;
 
         case ActionTypes.CHANGE_REZULTAT_ISPITA:
             _changeRezultatIspita(action.updatedRezultatIspita);
+
+            // Because this data depends on the *Student* data,
+            // wait for StudentStore to do its thing first
+            AppDispatcher.waitFor([StudentStore.dispatchToken]);
+            _addRezultatiIspitaForChosenStudent();
+
             rezultatIspitaStore.emitChange();
             break;
 

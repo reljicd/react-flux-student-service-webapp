@@ -1,7 +1,16 @@
 /**
  * Created by reljicd on 3/27/15.
+ *
+ * ******************************
+ *   *** Main React file ***
+ *
+ *   This file bootstraps the entire application.
+ *   Loads the data
+ *   Defines the Main Component.
+ *   Configures and runs Router
  */
 
+// ****** Imports **********************************
 var React = require('react');
 var Router = require('react-router'),
     DefaultRoute = Router.DefaultRoute,
@@ -19,19 +28,12 @@ var KratakPregled = require('./components/student/kratakPregled/KratakPregled.re
 
 var WebAPIUtils = require('./utils/WebAPIUtils');
 var ExampleData = require('./ExampleData');
-
-/**
- * ******************************
- *   *** Main React file ***
- *
- *   This file bootstraps the entire application.
- *   Loads the data
- *   Defines the Main Component.
- *   Configures and runs Router
- */
+/*************************************************/
 
 window.React = React; // export for http://fb.me/react-devtools
 
+
+// ****** Example Data Loading **********************************
 ExampleData.init(); // load example data into localstorage
 
 WebAPIUtils.getAllStudents(); // load *Student* data for the first time into the app
@@ -43,6 +45,7 @@ WebAPIUtils.getAllSkolskaGodinas(); // load *Skolska Godina* data for the first 
 WebAPIUtils.getAllStudijskiPrograms(); // load *Studijski Program* data for the first time into the app
 WebAPIUtils.getAllUpiss(); // load *Upis* data for the first time into the app
 WebAPIUtils.getAllRezultatIspitas(); // load *Rezultat Ispita* data for the first time into the app
+/*************************************************/
 
 /**
  * ******************************
@@ -84,6 +87,4 @@ var routes = (
 Router.run(routes, function (Handler) {
     React.render(<Handler/>, document.getElementById('app'));
 });
-/**
- *******************************
- */
+/*************************************************/

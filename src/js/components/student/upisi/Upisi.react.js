@@ -18,10 +18,7 @@ var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText
 var DodavanjeUpisaModal = require('./DodavanjeUpisaModal.react.js');
 var UpisiTable = require('./UpisiTable.react.js');
 var UpisStore = require('../../../stores/UpisStore');
-var SkolskaGodinaStore = require('../../../stores/SkolskaGodinaStore');
-var NacinFinansiranjaStore = require('../../../stores/NacinFinansiranjaStore');
-var GodinaStudijaStore = require('../../../stores/GodinaStudijaStore');
-var StudijskiProgramStore = require('../../../stores/StudijskiProgramStore');
+var StaticDataStores = require('../../../stores/StaticDataStores');
 
 /**
  * ******************************
@@ -30,10 +27,10 @@ var StudijskiProgramStore = require('../../../stores/StudijskiProgramStore');
 function getStateFromStores() {
     return {
         upisiForChosenStudent: UpisStore.getUpisiForChosenStudent(),
-        skolskeGodine: SkolskaGodinaStore.getAll(),
-        naciniFinansiranja: NacinFinansiranjaStore.getAll(),
-        godineStudija: GodinaStudijaStore.getAll(),
-        studijskiProgrami: StudijskiProgramStore.getAll()
+        skolskeGodine: StaticDataStores.staticDataStoreSkolskaGodina.getAll(),
+        naciniFinansiranja: StaticDataStores.staticDataStoreNacinFinansiranja.getAll(),
+        godineStudija: StaticDataStores.staticDataStoreGodineStudija.getAll(),
+        studijskiProgrami: StaticDataStores.staticDataStoreStudijskiProgram.getAll()
     };
 }
 
@@ -45,18 +42,18 @@ var Upisi = React.createClass({
 
     componentDidMount: function () {
         UpisStore.addChangeListener(this._onChange);
-        SkolskaGodinaStore.addChangeListener(this._onChange);
-        NacinFinansiranjaStore.addChangeListener(this._onChange);
-        GodinaStudijaStore.addChangeListener(this._onChange);
-        StudijskiProgramStore.addChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreSkolskaGodina.addChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreNacinFinansiranja.addChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreGodineStudija.addChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreStudijskiProgram.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function () {
         UpisStore.removeChangeListener(this._onChange);
-        SkolskaGodinaStore.removeChangeListener(this._onChange);
-        NacinFinansiranjaStore.removeChangeListener(this._onChange);
-        GodinaStudijaStore.removeChangeListener(this._onChange);
-        StudijskiProgramStore.removeChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreSkolskaGodina.removeChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreNacinFinansiranja.removeChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreGodineStudija.removeChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreStudijskiProgram.removeChangeListener(this._onChange);
     },
 
     render: function () {

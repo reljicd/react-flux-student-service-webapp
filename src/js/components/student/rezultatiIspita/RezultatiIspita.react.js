@@ -18,9 +18,7 @@ var LabelAndDisabledInputText = require('../../helpers/LabelAndDisabledInputText
 var RezultatiIspitaTable = require('./RezultatiIspitaTable.react.js');
 var DodavanjePolozenogIspitaModal = require('./DodavanjePolozenogIspitaModal.react.js');
 var RezultatIspitaStore = require('../../../stores/RezultatIspitaStore');
-var GodinaStudijaStore = require('../../../stores/GodinaStudijaStore');
-var PredmetStore = require('../../../stores/PredmetStore');
-var RokStore = require('../../../stores/RokStore');
+var StaticDataStores = require('../../../stores/StaticDataStores');
 
 /**
  * ******************************
@@ -30,9 +28,9 @@ var RokStore = require('../../../stores/RokStore');
 function getStateFromStores() {
     return {
         rezultatiIspitaForChosenStudent: RezultatIspitaStore.getRezultatiIspitaForChosenStudent(),
-        godineStudija: GodinaStudijaStore.getAll(),
-        predmeti: PredmetStore.getAll(),
-        rokovi: RokStore.getAll()
+        godineStudija: StaticDataStores.staticDataStoreGodineStudija.getAll(),
+        predmeti: StaticDataStores.staticDataStorePredmet.getAll(),
+        rokovi: StaticDataStores.staticDataStoreRok.getAll()
     };
 }
 
@@ -44,16 +42,16 @@ var RezultatiIspita = React.createClass({
 
     componentDidMount: function () {
         RezultatIspitaStore.addChangeListener(this._onChange);
-        GodinaStudijaStore.addChangeListener(this._onChange);
-        PredmetStore.addChangeListener(this._onChange);
-        RokStore.addChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreGodineStudija.addChangeListener(this._onChange);
+        StaticDataStores.staticDataStorePredmet.addChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreRok.addChangeListener(this._onChange);
     },
 
     componentWillUnmount: function () {
         RezultatIspitaStore.removeChangeListener(this._onChange);
-        GodinaStudijaStore.removeChangeListener(this._onChange);
-        PredmetStore.removeChangeListener(this._onChange);
-        RokStore.removeChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreGodineStudija.removeChangeListener(this._onChange);
+        StaticDataStores.staticDataStorePredmet.removeChangeListener(this._onChange);
+        StaticDataStores.staticDataStoreRok.removeChangeListener(this._onChange);
     },
 
     render: function () {

@@ -1,11 +1,21 @@
 /**
  * Created by Dusan on 4/2/2015.
+ *
+ *  **************************************************************
+ *   *** Action Creator for all Rezultati Ispita actions ***
+ *
+ *      - adding of new *Rezultat Ispita*
+ *      - modifying present *Rezultat Ispita*
+ *
  */
 
+// ****** Imports **********************************
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var Constants = require('../constants/Constants');
 
 var ActionTypes = Constants.ActionTypes;
+/*************************************************/
+
 
 module.exports = {
 
